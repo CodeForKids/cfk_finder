@@ -169,4 +169,44 @@ Feedback and Reviews
 | customer_id | FK                            |
 | type        | varchar(255) [cust or tutor ] |
 | description | TEXT                          |
-| rating      | DECIMAL(10,2)                 |
+| rating      | DECIMAL(10,2
+
+___
+
+Other Tables
+---
+
+### Subjects
+| column      | type         |
+|-------------|--------------|
+| id          | PK (int)     |
+| subject     | varchar(255) |
+| description | TEXT         |
+
+### Dates
+| column     | type     |
+|------------|----------|
+| id         | PK (int) |
+| start_time | datetime |
+| end_time   | datetime |
+| event_id   | FK       |
+
+### Images
+| column     | type     |
+|------------|----------|
+| id         | PK (int) |
+| image      | image*   |
+| event_id   | FK       |
+
+ *Image will be started on Amazon, this is actually a link
+ 
+ ### Address
+| column     | type         |
+|------------|--------------|
+| id         | PK (int)     |
+| address1   | varchar(255) |
+| address2   | varchar(255) |
+| City       | varchar(255) |
+| State      | varchar(255) |
+| Country    | varchar(255) |
+| PostalCode | varchar(255) |
