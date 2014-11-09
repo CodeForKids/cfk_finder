@@ -177,6 +177,7 @@ Other Tables
 ---
 
 ### Subjects
+
 | column      | type         |
 |-------------|--------------|
 | id          | PK (int)     |
@@ -184,6 +185,7 @@ Other Tables
 | description | TEXT         |
 
 ### Dates
+
 | column     | type     |
 |------------|----------|
 | id         | PK (int) |
@@ -192,15 +194,17 @@ Other Tables
 | event_id   | FK       |
 
 ### Images
+
 | column     | type     |
 |------------|----------|
 | id         | PK (int) |
 | image      | image*   |
 | event_id   | FK       |
 
- *Image will be started on Amazon, this is actually a link
+ Image will be started on Amazon, this is actually a link
  
- ### Address
+### Address
+ 
 | column     | type         |
 |------------|--------------|
 | id         | PK (int)     |
@@ -210,3 +214,10 @@ Other Tables
 | State      | varchar(255) |
 | Country    | varchar(255) |
 | PostalCode | varchar(255) |
+
+___
+
+Docs and API
+---
+ - Stripe: https://stripe.com/docs/api/ruby
+ [Will add more gems here and docs]
