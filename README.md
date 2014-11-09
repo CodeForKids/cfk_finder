@@ -24,7 +24,24 @@ Tutors
 - Tutors have many Event events
 - Tutors have many Tutor events
 - Tutors have feedback and ratings
+- Tutors have many subjects
+- Tutors have one address
 
+| column        | type         |
+|---------------|--------------|
+| id            | PK (int)     |
+| first_name    | varchar(255) |
+| last_name     | varchar(255) |
+| email         | varchar(255) |
+| date_of_birth | date         |
+| police_check  | image*       |
+| max_students  | integer      |
+| address_id    | FK           |
+| info_for_auth |              |
+
+ *Image will be started on Amazon, this is actually a link
+
+___
 
 Customers
 ---
@@ -38,9 +55,23 @@ Customers
 
 #### Data
 - Customers have many children
-- Customers have many addresses
+- Customers have one address **(?)**
 - Customers have feedback and ratings
 - Customers have many bookings
+
+| column        | type         |
+|---------------|--------------|
+| id            | PK (int)     |
+| first_name    | varchar(255) |
+| last_name     | varchar(255) |
+| email         | varchar(255) |
+| stripe_id     | FK*          |
+| address_id    | FK           |
+| info_for_auth |              |
+
+*Stripe_id will allow us to link to stripe for credit card charges. May have to include more information for stripe (i.e. last 4 digits on CC).
+
+___
 
 Children
 ---
@@ -50,6 +81,15 @@ Children
 - Children has one customer (parent/guardian)
 - Children have many bookings
 
+| column     | type         |
+|------------|--------------|
+| id         | PK (int)     |
+| first_name | varchar(255) |
+| last_name  | varchar(255) |
+| gender     | varchar(255) |
+| parent_id  | FK           |
+
+___
 
 Events
 ---
@@ -64,6 +104,18 @@ Events
 - Events have many dates
 - Events have many images
 
+| column           | type                                  |
+|------------------|---------------------------------------|
+| id               | PK (int)                              |
+| name             | varchar(255)                          |
+| description      | TEXT                                  |
+| spots_available  | integer, default = 3                  |
+| type_of_event    | varchar(255)                          |
+| type             | varchar(255) [ tutor or event event ] |
+| materials_needed | TEXT                                  |
+
+___
+
 Booking
 ---
 - A booking is a link between "customer", "event", "tutor", "child"
@@ -72,12 +124,33 @@ Booking
 #### Data
 - Booking has one child, one tutor, one event, one customer
 
+| column      | type     |
+|-------------|----------|
+| id          | PK (int) |
+| customer_id | FK       |
+| child_id    | FK       |
+| tutor_id    | FK       |
+| event_id    | FK       |
+
+___
+
 Admin
 ---
  - Admins are super users designated by other admins
  - They are able to view all information for all customers and tutors
  - They must be able to adminstrate the feedback and reviews (delete / modify), no one else should be able to delete. Customers may modify their own. Tutors may modify their own.
  - Admins should be able to modify any events
+
+#### Data
+| column        | type         |
+|---------------|--------------|
+| id            | PK (int)     |
+| first_name    | varchar(255) |
+| last_name     | varchar(255) |
+| email         | varchar(255) |
+| info_for_auth |              |
+
+___
  
 Feedback and Reviews
 ---
@@ -87,3 +160,13 @@ Feedback and Reviews
  - All feedback and reviews are checked for coarse or inappropriate language.
  - Createable by anyone, modifiable by the ones who created it or admins.
  - Customer -> Tutor, Tutor -> Customer
+ 
+#### Data
+| column      | type                          |
+|-------------|-------------------------------|
+| id          | PK (int)                      |
+| tutor_id    | FK                            |
+| customer_id | FK                            |
+| type        | varchar(255) [cust or tutor ] |
+| description | TEXT                          |
+| rating      | DECIMAL(10,2)                 |
