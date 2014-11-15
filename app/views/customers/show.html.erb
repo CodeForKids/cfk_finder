@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<%= @customer.first_name %>
+<%= @customer.last_name %>
+<%= @customer.email %>
+
+<button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_customer_path(@customer) %></button>
+<button type="button" class="btn btn-success"><%= link_to 'Back', customers_path %></button>
