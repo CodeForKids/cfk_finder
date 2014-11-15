@@ -1,6 +1,9 @@
+/*
+ *= require_tree .
+ *= require_self
+*/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-.btn-link { color: blue;}
 
 a { color: white;}
