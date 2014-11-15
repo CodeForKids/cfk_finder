@@ -3,12 +3,7 @@ require 'test_helper'
 class KidsControllerTest < ActionController::TestCase
   setup do
     @kid = kids(:one)
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:kids)
+    sign_in(@kid.parent.user)
   end
 
   test "should get new" do

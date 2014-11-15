@@ -1,8 +1,4 @@
 <div class="page-header">
-  <%= link_to customers_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
   <%= link_to edit_customer_path(@customer), :class => 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
@@ -22,4 +18,5 @@
 </dl>
 
 <h2>Show Parent's Kids</h2>
+<%= link_to "New Kids", new_kid_path, class: "btn btn-primary" %>
 <%= render "kids/kids_table", kids: @customer.kids %>

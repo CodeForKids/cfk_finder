@@ -3,17 +3,12 @@ require 'test_helper'
 class CustomersControllerTest < ActionController::TestCase
   setup do
     @customer = customers(:one)
+    sign_in(@customer.user)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:customers)
-  end
-
-  test "should get new" do
+  test "should redirect from new when user has a role" do
     get :new
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should create customer" do

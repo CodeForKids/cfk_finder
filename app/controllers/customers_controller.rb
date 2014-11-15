@@ -1,32 +1,36 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @customers = Customer.all
-  end
+  skip_before_action :finish_signup, only: [:new, :create]
+  before_action :authenticate!, only: [:show, :edit, :update, :destroy]
 
   def show
   end
 
   def new
+    redirect_to customer_path(current_user.role) unless allowed_new_customer?
     @customer = Customer.new
   end
 
-  def edit
-  end
-
   def create
+    redirect_to customer_path(current_user.role) unless allowed_new_customer?
     @customer = Customer.new(customer_params)
+    @customer.email = current_user.email
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html do
+          current_user.update_attributes(role_id: @customer.id)
+          redirect_to @customer, notice: 'Customer was successfully created.'
+        end
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
   end
 
   def update
@@ -51,12 +55,24 @@ class CustomersController < ApplicationController
 
   private
 
+  def authenticate!
+    redirect_to customer_path(current_user.role) unless allowed_view_customer?
+  end
+
+  def allowed_new_customer?
+    current_user.role_type == "Customer" && current_user.role_id.nil?
+  end
+
+  def allowed_view_customer?
+    @customer == current_user.role
+  end
+
   def set_customer
     @customer = Customer.find(params[:id])
   end
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :email)
+    params.require(:customer).permit(:first_name, :last_name, :email, user_attributes: [:email, :password, :password_confirmation, :current_password])
   end
 
 end

@@ -1,9 +1,6 @@
 class KidsController < ApplicationController
   before_action :set_kid, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @kids = Kid.all.includes(:parent)
-  end
+  before_action :authenticate!, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -12,11 +9,9 @@ class KidsController < ApplicationController
     @kid = Kid.new
   end
 
-  def edit
-  end
-
   def create
     @kid = Kid.new(kid_params)
+    @kid.parent = current_user.role
 
     respond_to do |format|
       if @kid.save
@@ -27,6 +22,9 @@ class KidsController < ApplicationController
         format.json { render json: @kid.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def edit
   end
 
   def update
@@ -50,6 +48,14 @@ class KidsController < ApplicationController
   end
 
   private
+
+  def authenticate!
+    redirect_to root_url unless allowed_access?
+  end
+
+  def allowed_access?
+    current_user.role == @kid.parent
+  end
 
   def set_kid
     @kid = Kid.find(params[:id])
