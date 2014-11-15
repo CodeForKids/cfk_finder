@@ -11,15 +11,18 @@
 </div>
 
 <dl class="dl-horizontal">
-    <dt>First name:</dt>
-    <dd><%= @kid.first_name %></dd>
-    <dt>Last name:</dt>
-    <dd><%= @kid.last_name %></dd>
-    <dt>Gender:</dt>
-    <dd><%= @kid.gender %></dd>
-    <dt>Date of birth:</dt>
-    <dd><%= @kid.date_of_birth %></dd>
+  <dt>First name:</dt>
+  <dd><%= @kid.first_name %></dd>
 
+  <dt>Last name:</dt>
+  <dd><%= @kid.last_name %></dd>
 
+  <dt>Gender:</dt>
+  <dd><%= @kid.gender %></dd>
 
+  <dt>Date of birth:</dt>
+  <dd><%= @kid.date_of_birth %></dd>
+
+  <dt>Parent:</dt>
+  <dd><%= @kid.parent.name %></dd>
 </dl>
