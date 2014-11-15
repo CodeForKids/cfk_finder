@@ -30,6 +30,8 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (4.0.0.1)
       execjs
+    bootstrap-generators (3.3.1)
+      railties (>= 3.1.0)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     builder (3.2.2)
@@ -87,7 +89,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spring (1.1.3)
     sprockets (2.11.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -113,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bootstrap-generators (~> 3.3.1)
   bootstrap-sass (~> 3.3.1)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
@@ -121,6 +123,5 @@ DEPENDENCIES
   rails (= 4.1.7)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  spring
   turbolinks
   uglifier (>= 1.3.0)

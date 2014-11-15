@@ -1,6 +1,13 @@
-<h1>Editing customer</h1>
+<div class="page-header">
+  <%= link_to customers_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to @customer, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing customer</h1>
+</div>
 
 <%= render 'form' %>
-
-<button type="button" class="btn btn-info"><%= link_to 'Show', @customer %></button>
-<button type="button" class="btn btn-success"><%= link_to 'Back', customers_path %></button>

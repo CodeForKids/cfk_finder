@@ -1,26 +1,34 @@
-<h1>Listing customers</h1>
+<div class="page-header">
+  <%= link_to new_customer_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Customer
+  <% end %>
+  <h1>Listing customers</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="6"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @customers.each do |customer| %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
       <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @customers) do |customer| %>
         <td><%= customer.first_name %></td>
         <td><%= customer.last_name %></td>
         <td><%= customer.email %></td>
-        <td><button type="button" class="btn btn-info"><%= link_to 'Show', customer %></button></td>
-        <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_customer_path(customer) %></button></td>
-        <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<button type="button" class="btn btn-primary"><%= link_to 'New Customer', new_customer_path %></button>
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: delete_phrase(customer) } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
