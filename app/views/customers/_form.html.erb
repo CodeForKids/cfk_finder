@@ -13,13 +13,13 @@
 
   <div class="actions">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
 
     <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
 
     <%= f.label :email %>
-    <%= f.text_field :email %>
-    <%= f.submit %>
+    <%= f.text_field :email, class: "form-control" %>
+    <button type="button" class="btn btn-success"><%= f.submit %></button>
   </div>
 <% end %>

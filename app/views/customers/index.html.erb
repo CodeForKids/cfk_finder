@@ -13,9 +13,9 @@
         <td><%= customer.first_name %></td>
         <td><%= customer.last_name %></td>
         <td><%= customer.email %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><button type="button" class="btn btn-info"><%= link_to 'Show', customer %></button></td>
+        <td><button type="button" class="btn btn-warning"><%= link_to 'Edit', edit_customer_path(customer) %></button></td>
+        <td><button type="button" class="btn btn-danger"><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Customer', new_customer_path %>
+<button type="button" class="btn btn-primary"><%= link_to 'New Customer', new_customer_path %></button>
