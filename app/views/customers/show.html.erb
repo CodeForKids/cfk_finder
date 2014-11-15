@@ -7,27 +7,19 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show customer</h1>
+  <h1>Show parent</h1>
 </div>
 
 <dl class="dl-horizontal">
-
-
-  
-  
     <dt>First name:</dt>
     <dd><%= @customer.first_name %></dd>
-  
-  
+
     <dt>Last name:</dt>
     <dd><%= @customer.last_name %></dd>
-  
-  
+
     <dt>Email:</dt>
     <dd><%= @customer.email %></dd>
-  
-  
-  
-
-
 </dl>
+
+<h2>Show Parent's Kids</h2>
+<%= render "kids/kids_table", kids: @customer.kids %>

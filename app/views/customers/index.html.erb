@@ -13,7 +13,7 @@
         <th>First name</th>
         <th>Last name</th>
         <th>Email</th>
-
+        <th># Of Kids</th>
         <th></th>
         <th></th>
         <th></th>
@@ -25,6 +25,7 @@
         <td><%= customer.first_name %></td>
         <td><%= customer.last_name %></td>
         <td><%= customer.email %></td>
+        <td><%= customer.kids.count %></td>
         <td><%= link_to 'Show', customer %></td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
         <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: delete_phrase(customer) } %></td>

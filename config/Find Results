@@ -1,0 +1,86 @@
+Searching 290 files for "parent_path"
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/customers/index.html.erb:
+    1  <div class="page-header">
+    2:   <%= link_to new_parent_path, :class => 'btn btn-primary' do %>
+    3      <span class="glyphicon glyphicon-plus"></span>
+    4      New Customer
+    .
+   28          <td><%= customer.kids.count %></td>
+   29          <td><%= link_to 'Show', customer %></td>
+   30:         <td><%= link_to 'Edit', edit_parent_path(customer) %></td>
+   31          <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: delete_phrase(customer) } %></td>
+   32        <% end %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/customers/show.html.erb:
+    4      Back
+    5    <% end %>
+    6:   <%= link_to edit_parent_path(@customer), :class => 'btn btn-primary' do %>
+    7      <span class="glyphicon glyphicon-pencil"></span>
+    8      Edit
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/kids/_kids_table.html.erb:
+   21          <td><%= kid.gender %></td>
+   22          <td><%= kid.date_of_birth %></td>
+   23:         <td><%= link_to kid.parent.name, parent_path(kid.parent) %></td>
+   24          <td><%= link_to 'Show', kid %></td>
+   25          <td><%= link_to 'Edit', edit_kid_path(kid) %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/customers_controller_test.rb:
+   22      end
+   23
+   24:     assert_redirected_to parent_path(assigns(:customer))
+   25    end
+   26
+   ..
+   50    test "should update customer" do
+   51      patch :update, id: @customer, customer: { first_name: "Josh", last_name: "Chartrand", email: "josh@example.com" }
+   52:     assert_redirected_to parent_path(assigns(:customer))
+   53
+   54      customer = assigns(:customer)
+
+6 matches across 4 files
+
+
+Searching 290 files for "parent_path"
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/customers/index.html.erb:
+    1  <div class="page-header">
+    2:   <%= link_to new_parent_path, :class => 'btn btn-primary' do %>
+    3      <span class="glyphicon glyphicon-plus"></span>
+    4      New Customer
+    .
+   28          <td><%= customer.kids.count %></td>
+   29          <td><%= link_to 'Show', customer %></td>
+   30:         <td><%= link_to 'Edit', edit_parent_path(customer) %></td>
+   31          <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: delete_phrase(customer) } %></td>
+   32        <% end %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/customers/show.html.erb:
+    4      Back
+    5    <% end %>
+    6:   <%= link_to edit_parent_path(@customer), :class => 'btn btn-primary' do %>
+    7      <span class="glyphicon glyphicon-pencil"></span>
+    8      Edit
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/kids/_kids_table.html.erb:
+   21          <td><%= kid.gender %></td>
+   22          <td><%= kid.date_of_birth %></td>
+   23:         <td><%= link_to kid.parent.name, parent_path(kid.parent) %></td>
+   24          <td><%= link_to 'Show', kid %></td>
+   25          <td><%= link_to 'Edit', edit_kid_path(kid) %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/customers_controller_test.rb:
+   22      end
+   23
+   24:     assert_redirected_to parent_path(assigns(:customer))
+   25    end
+   26
+   ..
+   50    test "should update customer" do
+   51      patch :update, id: @customer, customer: { first_name: "Josh", last_name: "Chartrand", email: "josh@example.com" }
+   52:     assert_redirected_to parent_path(assigns(:customer))
+   53
+   54      customer = assigns(:customer)
+
+6 matches across 4 files

@@ -1,0 +1,25 @@
+<div class="page-header">
+  <%= link_to kids_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_kid_path(@kid), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show kid</h1>
+</div>
+
+<dl class="dl-horizontal">
+    <dt>First name:</dt>
+    <dd><%= @kid.first_name %></dd>
+    <dt>Last name:</dt>
+    <dd><%= @kid.last_name %></dd>
+    <dt>Gender:</dt>
+    <dd><%= @kid.gender %></dd>
+    <dt>Date of birth:</dt>
+    <dd><%= @kid.date_of_birth %></dd>
+
+
+
+</dl>

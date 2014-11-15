@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th>Parent</th>
+
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, kids) do |kid| %>
+        <td><%= kid.first_name %></td>
+        <td><%= kid.last_name %></td>
+        <td><%= kid.gender %></td>
+        <td><%= kid.date_of_birth %></td>
+        <td><%= link_to kid.parent.name, customer_path(kid.parent) %></td>
+        <td><%= link_to 'Show', kid %></td>
+        <td><%= link_to 'Edit', edit_kid_path(kid) %></td>
+        <td><%= link_to 'Destroy', kid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
