@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def new
     instance_variable_set("@#{controller}", resource_constant.new)
+    resource.address = resource.build_address
   end
 
   def create
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
       if resource.save
         format.html do
           current_user.update_attributes(role_id: resource.id)
-          redirect_to resource, notice: '#{controller.humanize} was successfully created.'
+          redirect_to resource, notice: "#{controller.humanize} was successfully created."
         end
         format.json { render :show, status: :created, location: resource }
       else

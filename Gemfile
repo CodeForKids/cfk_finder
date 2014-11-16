@@ -7,6 +7,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'date_validator'
 gem 'devise'
+gem 'geocoder'
 
 #Assets
 gem 'sass-rails', '~> 4.0.3'
@@ -22,6 +23,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'devise-bootstrap-views'
 
 group :development, :test do
-  gem 'faker', github: "stympy/faker"
+  gem 'ffaker', github: "emmanueloga/ffaker"
   gem 'pry'
 end

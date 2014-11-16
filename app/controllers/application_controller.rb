@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :finish_signup, if: :user_not_finished_signup?
 
+  def index
+    @addresses = Address.all.includes(:owner)
+    @hash = @addresses.collect do |address|
+      { latitude: address.latitude,
+        longitude: address.longitude,
+        title: address.owner.name,
+        content: address.full_street_address }
+    end
+  end
+
   protected
 
   def user_not_finished_signup?

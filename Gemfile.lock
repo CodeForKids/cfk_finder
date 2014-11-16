@@ -1,9 +1,8 @@
 GIT
-  remote: git://github.com/stympy/faker.git
-  revision: 3669c7b61ea3eec56c8d81656891840fa9aade0e
+  remote: git://github.com/emmanueloga/ffaker.git
+  revision: de7b6160be27065cc6a486dcddf23cdc730403ab
   specs:
-    faker (1.4.3)
-      i18n (~> 0.5)
+    ffaker (1.25.0)
 
 GEM
   remote: https://rubygems.org/
@@ -64,6 +63,7 @@ GEM
     devise-bootstrap-views (0.0.3)
     erubis (2.7.0)
     execjs (2.2.2)
+    geocoder (1.2.6)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.4)
@@ -150,7 +150,8 @@ DEPENDENCIES
   date_validator
   devise
   devise-bootstrap-views
-  faker!
+  ffaker!
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

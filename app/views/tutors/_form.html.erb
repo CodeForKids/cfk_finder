@@ -1,16 +1,5 @@
 <%= form_for(@tutor, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
-  <% if @tutor.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@tutor.errors.count, "error") %> prohibited this tutor from being saved:</h4>
-
-      <ul>
-      <% @tutor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "general_forms/errors", object: @tutor %>
 
   <div class="form-group">
     <%= f.label :first_name, :class => "col-sm-2 control-label" %>
@@ -18,18 +7,21 @@
       <%= f.text_field :first_name, :class => "form-control" %>
     </div>
   </div>
+
   <div class="form-group">
     <%= f.label :last_name, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.text_field :last_name, :class => "form-control" %>
     </div>
   </div>
+
   <div class="form-group">
     <%= f.label :date_of_birth, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.text_field :date_of_birth, :class => "form-control datepicker" %>
     </div>
   </div>
+
   <div class="form-group">
     <%= f.label :max_students, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
@@ -37,8 +29,8 @@
     </div>
   </div>
 
-
-
+  <%= render "general_forms/user", f: f %>
+  <%= render "general_forms/address", f: f %>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

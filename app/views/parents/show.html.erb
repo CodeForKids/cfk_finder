@@ -7,12 +7,14 @@
 </div>
 
 <dl class="dl-horizontal">
-    <dt>First name:</dt>
-    <dd><%= @parent.first_name %></dd>
+  <dt>First name:</dt>
+  <dd><%= @parent.first_name %></dd>
 
-    <dt>Last name:</dt>
-    <dd><%= @parent.last_name %></dd>
+  <dt>Last name:</dt>
+  <dd><%= @parent.last_name %></dd>
 </dl>
+
+<%= render @parent.address %>
 
 <div class="page-header">
   <%= link_to "New Kids", new_parent_kid_path(@parent), class: "btn btn-primary" %>
