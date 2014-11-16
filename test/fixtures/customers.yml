@@ -3,3 +3,9 @@ one:
   first_name: "Julian"
   last_name: "Nadeau"
   email: "julian@example.com"
+
+two:
+  id: 2
+  first_name: "Josh"
+  last_name: "Chartrand"
+  email: "josh@example.com"

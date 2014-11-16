@@ -1,4 +1,13 @@
 customer:
-  email: "julian@codeforkids.ca"
+  email: "julian@example.com"
   role_id: 1
+  role_type: "Customer"
+
+customer2:
+  email: "josh@example.com"
+  role_id: 2
+  role_type: "Customer"
+
+no_role_id_customer:
+  email: "john@example.com"
   role_type: "Customer"
