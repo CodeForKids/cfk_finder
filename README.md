@@ -1,4 +1,4 @@
-cfk_finder
+cfk_finder [![Build Status](https://semaphoreapp.com/api/v1/projects/91c51770-89b6-4e12-8676-8c6cafa3ee22/290146/shields_badge.svg)](https://semaphoreapp.com/codeforkids/cfk_finder)
 ==========
 [In the wiki, there is an overview of the app.](https://github.com/CodeForKids/cfk_finder/wiki)
 
