@@ -50,7 +50,7 @@ class KidsController < ApplicationController
   private
 
   def authenticate!
-    redirect_to root_url unless allowed_access?
+    redirect_to root_url and return unless allowed_access?
   end
 
   def allowed_access?

@@ -11,21 +11,12 @@ class CustomersControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
-  test "should create customer" do
-    assert_difference('Customer.count') do
-      post :create, customer: { first_name: "Josh", last_name: "Chartrand", email: "josh@example.com" }
-    end
-
-    assert_redirected_to customer_path(assigns(:customer))
-  end
-
-  test "should not create customer" do
+  test "should not create customer when user has a role" do
     assert_no_difference('Customer.count') do
       post :create, customer: { first_name: "", last_name: "Chartrand", email: "josh@example.com" }
     end
 
-    assert_template :new
-    assert_equal "First name can't be blank", assigns(:customer).errors.full_messages.to_sentence
+    assert_redirected_to customer_path(@customer)
   end
 
   test "should show customer" do

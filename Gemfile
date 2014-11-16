@@ -21,6 +21,6 @@ gem 'bootstrap-generators', '~> 3.3.1'
 gem 'bootstrap-datepicker-rails'
 gem 'devise-bootstrap-views'
 
-group :development do
+group :development, :test do
   gem 'pry'
 end

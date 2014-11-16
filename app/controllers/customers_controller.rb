@@ -2,17 +2,16 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   skip_before_action :finish_signup, only: [:new, :create]
   before_action :authenticate!, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_creation!, only: [:new, :create]
 
   def show
   end
 
   def new
-    redirect_to customer_path(current_user.role) unless allowed_new_customer?
     @customer = Customer.new
   end
 
   def create
-    redirect_to customer_path(current_user.role) unless allowed_new_customer?
     @customer = Customer.new(customer_params)
     @customer.email = current_user.email
 
@@ -59,8 +58,12 @@ class CustomersController < ApplicationController
     redirect_to customer_path(current_user.role) unless allowed_view_customer?
   end
 
-  def allowed_new_customer?
-    current_user.role_type == "Customer" && current_user.role_id.nil?
+  def authenticate_creation!
+    if current_user.role_type != "Customer"
+      redirect_to root_url
+    elsif !current_user.role_id.nil?
+      redirect_to customer_path(current_user.role)
+    end
   end
 
   def allowed_view_customer?
