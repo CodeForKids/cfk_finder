@@ -17,6 +17,9 @@
     <dd><%= @customer.email %></dd>
 </dl>
 
-<h2>Show Parent's Kids</h2>
-<%= link_to "New Kids", new_customer_kid_path(@customer), class: "btn btn-primary" %>
+<div class="page-header">
+  <%= link_to "New Kids", new_customer_kid_path(@customer), class: "btn btn-primary" %>
+  <h2>Show Parent's Kids</h2>
+</div>
+
 <%= render "kids/kids_table", kids: @customer.kids %>

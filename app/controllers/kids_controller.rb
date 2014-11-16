@@ -43,7 +43,7 @@ class KidsController < ApplicationController
   def destroy
     @kid.destroy
     respond_to do |format|
-      format.html { redirect_to customer_kids_path(@customer), notice: 'Kid was successfully destroyed.' }
+      format.html { redirect_to customer_path(@customer), notice: 'Kid was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

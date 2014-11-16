@@ -59,7 +59,7 @@ class KidsControllerTest < ActionController::TestCase
     assert_difference('Kid.count', -1) do
       delete :destroy, customer_id: @customer, id: @kid
     end
-    assert_redirected_to customer_kids_path(@customer)
+    assert_redirected_to customer_path(@customer)
   end
 
   ######################
