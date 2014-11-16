@@ -20,9 +20,9 @@
         <td><%= kid.last_name %></td>
         <td><%= kid.gender %></td>
         <td><%= kid.date_of_birth %></td>
-        <td><%= link_to kid.parent.name, customer_path(kid.parent) %></td>
+        <td><%= link_to kid.parent.name, parent_path(kid.parent) %></td>
         <td><%= link_to 'Show', [kid.parent, kid] %></td>
-        <td><%= link_to 'Edit', edit_customer_kid_path(kid.parent, kid) %></td>
+        <td><%= link_to 'Edit', edit_parent_kid_path(kid.parent, kid) %></td>
         <td><%= link_to 'Destroy', [kid.parent, kid], method: :delete, data: { confirm: "Are you sure you want to delete the kid's profile #{kid.name}?" } %></td>
       <% end %>
     </tbody>

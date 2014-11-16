@@ -22,5 +22,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'devise-bootstrap-views'
 
 group :development, :test do
+  gem 'faker', github: "stympy/faker"
   gem 'pry'
 end

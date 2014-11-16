@@ -1,11 +1,11 @@
-<%= form_for(@customer, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
-  <% if @customer.errors.any? %>
+<%= form_for(@parent, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
+  <% if @parent.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h4>
+      <h4><%= pluralize(@parent.errors.count, "error") %> prohibited this parent from being saved:</h4>
 
       <ul>
-      <% @customer.errors.full_messages.each do |msg| %>
+      <% @parent.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

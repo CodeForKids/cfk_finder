@@ -5,7 +5,7 @@ cfk_finder
 Steps for initial development:
 ---
 
-1. Develop Users (Customers, Admins, Tutors)
+1. Develop Users (Parents, Admins, Tutors)
 2. Develop Permissions
 3. Develop Events Systems
 4. Develop Registration System

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :tutors
+
   devise_for :users
 
-  resources :customers, except: :index do
+  resources :parents, except: :index do
     resources :kids, except: :index
   end
 

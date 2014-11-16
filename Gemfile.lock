@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/stympy/faker.git
+  revision: 3669c7b61ea3eec56c8d81656891840fa9aade0e
+  specs:
+    faker (1.4.3)
+      i18n (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -143,6 +150,7 @@ DEPENDENCIES
   date_validator
   devise
   devise-bootstrap-views
+  faker!
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

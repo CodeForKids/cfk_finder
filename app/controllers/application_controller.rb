@@ -20,8 +20,10 @@ class ApplicationController < ActionController::Base
 
   def finish_signup
     flash[:notice] = "Please finish your registration before continuing"
-    if current_user.role_type == "Customer"
-      redirect_to new_customer_path and return
+    if current_user.parent?
+      redirect_to new_parent_path and return
+    elsif current_user.tutor?
+      redirect_to new_tutor_path and return
     else
       redirect_to root_url and return
     end

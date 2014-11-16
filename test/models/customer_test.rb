@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class CustomerTest < ActiveSupport::TestCase
+class ParentTest < ActiveSupport::TestCase
   test "name" do
-    assert_equal "Julian Nadeau", customers(:one).name
+    assert_equal "Julian Nadeau", parents(:one).name
   end
 end

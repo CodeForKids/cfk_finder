@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to edit_customer_path(@customer), :class => 'btn btn-primary' do %>
+  <%= link_to edit_parent_path(@parent), :class => 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
@@ -8,18 +8,15 @@
 
 <dl class="dl-horizontal">
     <dt>First name:</dt>
-    <dd><%= @customer.first_name %></dd>
+    <dd><%= @parent.first_name %></dd>
 
     <dt>Last name:</dt>
-    <dd><%= @customer.last_name %></dd>
-
-    <dt>Email:</dt>
-    <dd><%= @customer.email %></dd>
+    <dd><%= @parent.last_name %></dd>
 </dl>
 
 <div class="page-header">
-  <%= link_to "New Kids", new_customer_kid_path(@customer), class: "btn btn-primary" %>
+  <%= link_to "New Kids", new_parent_kid_path(@parent), class: "btn btn-primary" %>
   <h2>Show Parent's Kids</h2>
 </div>
 
-<%= render "kids/kids_table", kids: @customer.kids %>
+<%= render "kids/kids_table", kids: @parent.kids %>

@@ -7,14 +7,14 @@ class User < ActiveRecord::Base
 
   def self.roles
     [
-      ["Parent", "Customer"],
+      ["Parent", "Parent"],
       ["Tutor", "Tutor"],
       ["Event Organizer", "Tutor"]
     ]
   end
 
-  def customer?
-    role_type == "Customer"
+  def parent?
+    role_type == "Parent"
   end
 
   def tutor?

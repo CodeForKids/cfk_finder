@@ -70,13 +70,13 @@
 <part>address_id</part>
 </key>
 </table>
-<table x="863" y="410" name="customers">
+<table x="863" y="410" name="parents">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="children" row="parent_id" />
-<relation table="bookings" row="customer_id" />
-<relation table="reviews" row="customer_id" />
-<relation table="transactions" row="customer_id" />
+<relation table="bookings" row="parent_id" />
+<relation table="reviews" row="parent_id" />
+<relation table="transactions" row="parent_id" />
 </row>
 <row name="address_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -163,7 +163,7 @@
 <row name="tutor_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="customer_id" null="1" autoincrement="0">
+<row name="parent_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="type" null="1" autoincrement="0">
@@ -178,7 +178,7 @@
 <key type="PRIMARY" name="">
 <part>id</part>
 <part>tutor_id</part>
-<part>customer_id</part>
+<part>parent_id</part>
 </key>
 </table>
 <table x="464" y="635" name="children">
@@ -216,12 +216,12 @@
 <row name="event_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="customer_id" null="1" autoincrement="0">
+<row name="parent_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
-<part>customer_id</part>
+<part>parent_id</part>
 <part>child_id</part>
 <part>tutor_id</part>
 <part>event_id</part>
@@ -279,7 +279,7 @@
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="tutors" row="address_id" />
-<relation table="customers" row="address_id" />
+<relation table="parents" row="address_id" />
 <relation table="events" row="address_id" />
 </row>
 <row name="address1" null="1" autoincrement="0">
@@ -317,7 +317,7 @@
 <row name="event_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="customer_id" null="1" autoincrement="0">
+<row name="parent_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="tutor_id" null="1" autoincrement="0">
@@ -335,7 +335,7 @@
 <key type="PRIMARY" name="">
 <part>id</part>
 <part>event_id</part>
-<part>customer_id</part>
+<part>parent_id</part>
 <part>tutor_id</part>
 </key>
 </table>

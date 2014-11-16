@@ -1,7 +1,5 @@
-class KidsController < ApplicationController
+class KidsController < RestrictedParentController
   before_action :set_kid, only: [:show, :edit, :update, :destroy]
-  before_action :set_customer
-  before_action :authenticate!, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -16,7 +14,7 @@ class KidsController < ApplicationController
 
     respond_to do |format|
       if @kid.save
-        format.html { redirect_to [@customer, @kid], notice: 'Kid was successfully created.' }
+        format.html { redirect_to [@parent, @kid], notice: 'Kid was successfully created.' }
         format.json { render :show, status: :created, location: @kid }
       else
         format.html { render :new }
@@ -31,7 +29,7 @@ class KidsController < ApplicationController
   def update
     respond_to do |format|
       if @kid.update(kid_params)
-        format.html { redirect_to [@customer, @kid], notice: 'Kid was successfully updated.' }
+        format.html { redirect_to [@parent, @kid], notice: 'Kid was successfully updated.' }
         format.json { render :show, status: :ok, location: @kid }
       else
         format.html { render :edit }
@@ -43,27 +41,19 @@ class KidsController < ApplicationController
   def destroy
     @kid.destroy
     respond_to do |format|
-      format.html { redirect_to customer_path(@customer), notice: 'Kid was successfully destroyed.' }
+      format.html { redirect_to parent_path(@parent), notice: 'Kid was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-  def authenticate!
-    redirect_to root_url and return unless allowed_access?
-  end
-
-  def allowed_access?
-    current_user.role == @kid.parent
-  end
-
   def set_kid
-    @kid = Kid.find(params[:id])
+    @kid = @resource
   end
 
-  def set_customer
-    @customer = Customer.find(params[:customer_id])
+  def set_parent
+    @parent = Parent.find(params[:parent_id])
   end
 
   def kid_params

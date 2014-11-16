@@ -1,7 +1,5 @@
-class Parent < ActiveRecord::Base
+class Tutor < ActiveRecord::Base
   validates :first_name, :last_name, presence: true
-  has_many :kids, foreign_key: :parent_id
-
   has_one :user, :as => :role
   accepts_nested_attributes_for :user
 
