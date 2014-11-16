@@ -11,3 +11,17 @@ parent2:
 no_role_id_parent:
   email: "john@example.com"
   role_type: "Parent"
+
+tutor:
+  email: "tutor@example.com"
+  role_id: 1
+  role_type: "Tutor"
+
+tutor2:
+  email: "tutor2@example.com"
+  role_id: 2
+  role_type: "Tutor"
+
+no_role_id_tutor:
+  email: "john_tutor@example.com"
+  role_type: "Tutor"

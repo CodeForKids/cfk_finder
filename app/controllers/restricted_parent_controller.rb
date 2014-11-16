@@ -15,7 +15,7 @@ class RestrictedParentController < ApplicationController
   end
 
   def allowed_view?
-    current_user.parent? && @resource.parent == @parent
+    current_user.parent? && current_user.role == @parent
   end
 
   def set_parent

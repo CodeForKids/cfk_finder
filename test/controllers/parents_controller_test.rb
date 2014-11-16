@@ -24,7 +24,7 @@ class ParentsControllerTest < ActionController::TestCase
     sign_in(@no_role_id)
 
     assert_difference('Parent.count') do
-      post :create, parent: { first_name: "John", last_name: "Smith", email: @no_role_id.email }
+      post :create, parent: { first_name: "John", last_name: "Smith" }
     end
 
     assert_response :redirect
@@ -82,7 +82,7 @@ class ParentsControllerTest < ActionController::TestCase
       delete :destroy, id: @parent
     end
 
-    assert_redirected_to parents_path
+    assert_redirected_to root_url
   end
 
   ########################################
@@ -107,8 +107,7 @@ class ParentsControllerTest < ActionController::TestCase
 
   test "should not update another parent" do
     sign_in(@parent2.user)
-
-    patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand", email: "josh@example.com" }
+    patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
     assert_redirected_to parent_path(@parent2)
 
     parent = Parent.find(@parent.id)

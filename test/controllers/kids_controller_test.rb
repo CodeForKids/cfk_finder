@@ -71,7 +71,7 @@ class KidsControllerTest < ActionController::TestCase
 
     get :show, parent_id: @parent, id: @kid
     assert_response :redirect
-    assert_redirected_to root_url
+    assert_redirected_to @parent2
   end
 
   test "should not get edit for another parent's kid" do
@@ -79,7 +79,7 @@ class KidsControllerTest < ActionController::TestCase
 
     get :edit, parent_id: @parent, id: @kid
     assert_response :redirect
-    assert_redirected_to root_url
+    assert_redirected_to @parent2
   end
 
   test "should not update another parent's kid" do
@@ -87,7 +87,7 @@ class KidsControllerTest < ActionController::TestCase
 
     patch :update, parent_id: @parent, id: @kid, kid: { first_name: "Not_Update" }
     assert_response :redirect
-    assert_redirected_to root_url
+    assert_redirected_to @parent2
   end
 
   test "should not destroy kid for parent's kid" do
@@ -97,7 +97,7 @@ class KidsControllerTest < ActionController::TestCase
       delete :destroy, parent_id: @parent, id: @kid
     end
     assert_response :redirect
-    assert_redirected_to root_url
+    assert_redirected_to @parent2
   end
 
 end

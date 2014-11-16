@@ -11,22 +11,22 @@ class UsersController < ApplicationController
   end
 
   def new
-    @resource = resource_constant.new
+    instance_variable_set("@#{controller}", resource_constant.new)
   end
 
   def create
-    @resource = resource_constant.new(resource_params)
+    instance_variable_set("@#{controller}", resource_constant.new(resource_params))
 
     respond_to do |format|
-      if @resource.save
+      if resource.save
         format.html do
-          current_user.update_attributes(role_id: @resource.id)
-          redirect_to @parent, notice: '#{controller.humanize} was successfully created.'
+          current_user.update_attributes(role_id: resource.id)
+          redirect_to resource, notice: '#{controller.humanize} was successfully created.'
         end
-        format.json { render :show, status: :created, location: @resource }
+        format.json { render :show, status: :created, location: resource }
       else
         format.html { render :new }
-        format.json { render json: @resource.errors, status: :unprocessable_entity }
+        format.json { render json: resource.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -36,18 +36,18 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @resource.update(resource_params)
-        format.html { redirect_to @resource, notice: "#{controller.humanize} was successfully updated." }
-        format.json { render :show, status: :ok, location: @resource }
+      if resource.update(resource_params)
+        format.html { redirect_to resource, notice: "#{controller.humanize} was successfully updated." }
+        format.json { render :show, status: :ok, location: resource }
       else
         format.html { render :edit }
-        format.json { render json: @resource.errors, status: :unprocessable_entity }
+        format.json { render json: resource.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @resource.destroy
+    resource.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: "#{controller.humanize} was successfully destroyed." }
       format.json { head :no_content }
@@ -78,6 +78,11 @@ class UsersController < ApplicationController
 
   def set_resource
     @resource = resource_constant.find(params[:id])
+    instance_variable_set("@#{controller}", @resource)
+  end
+
+  def resource
+    instance_variable_get("@#{controller}".to_sym)
   end
 
   def resource_constant
