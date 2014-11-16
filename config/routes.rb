@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :kids, except: :index
-  resources :customers, except: :index
+
+  resources :customers, except: :index do
+    resources :kids, except: :index
+  end
 
   root "application#index"
 end

@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to kids_path, :class => 'btn btn-default' do %>
+  <%= link_to customer_kids_path(@customer), :class => 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <%= link_to edit_kid_path(@kid), :class => 'btn btn-primary' do %>
+  <%= link_to edit_customer_kid_path(@customer, @kid), :class => 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
@@ -24,5 +24,5 @@
   <dd><%= @kid.date_of_birth %></dd>
 
   <dt>Parent:</dt>
-  <dd><%= @kid.parent.name %></dd>
+  <dd><%= @customer.name %></dd>
 </dl>

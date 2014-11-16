@@ -18,5 +18,5 @@
 </dl>
 
 <h2>Show Parent's Kids</h2>
-<%= link_to "New Kids", new_kid_path, class: "btn btn-primary" %>
+<%= link_to "New Kids", new_customer_kid_path(@customer), class: "btn btn-primary" %>
 <%= render "kids/kids_table", kids: @customer.kids %>

@@ -1,5 +1,6 @@
 class KidsController < ApplicationController
   before_action :set_kid, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer
   before_action :authenticate!, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -15,7 +16,7 @@ class KidsController < ApplicationController
 
     respond_to do |format|
       if @kid.save
-        format.html { redirect_to @kid, notice: 'Kid was successfully created.' }
+        format.html { redirect_to [@customer, @kid], notice: 'Kid was successfully created.' }
         format.json { render :show, status: :created, location: @kid }
       else
         format.html { render :new }
@@ -30,7 +31,7 @@ class KidsController < ApplicationController
   def update
     respond_to do |format|
       if @kid.update(kid_params)
-        format.html { redirect_to @kid, notice: 'Kid was successfully updated.' }
+        format.html { redirect_to [@customer, @kid], notice: 'Kid was successfully updated.' }
         format.json { render :show, status: :ok, location: @kid }
       else
         format.html { render :edit }
@@ -42,7 +43,7 @@ class KidsController < ApplicationController
   def destroy
     @kid.destroy
     respond_to do |format|
-      format.html { redirect_to kids_url, notice: 'Kid was successfully destroyed.' }
+      format.html { redirect_to customer_kids_path(@customer), notice: 'Kid was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -59,6 +60,10 @@ class KidsController < ApplicationController
 
   def set_kid
     @kid = Kid.find(params[:id])
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:customer_id])
   end
 
   def kid_params
