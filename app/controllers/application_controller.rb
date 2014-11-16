@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     @hash = @addresses.collect do |address|
       { latitude: address.latitude,
         longitude: address.longitude,
-        title: address.owner.name,
+        title: address.owner.name + " (#{address.owner.class.name.humanize})",
         content: address.full_street_address }
     end
   end
