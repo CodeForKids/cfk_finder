@@ -17,7 +17,7 @@ class Tutor < ActiveRecord::Base
   end
 
   def address_attributes=(attributes)
-    address = self.address
+    address = self.address || self.build_address
     address.update(attributes)
   end
 end

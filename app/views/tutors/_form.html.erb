@@ -2,35 +2,27 @@
   <%= render "general_forms/errors", object: @tutor %>
 
   <div class="form-group">
-    <%= f.label :first_name, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :first_name, :class => "form-control" %>
-    </div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, :class => "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :last_name, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :last_name, :class => "form-control" %>
-    </div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, :class => "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :date_of_birth, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :date_of_birth, :class => "form-control datepicker" %>
-    </div>
+    <%= f.label :date_of_birth %>
+    <%= f.text_field :date_of_birth, :class => "form-control datepicker" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :max_students, :class => "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :max_students, :class => "form-control" %>
-    </div>
+    <%= f.label :max_students %>
+    <%= f.number_field :max_students, :class => "form-control" %>
   </div>
 
-  <%= render "general_forms/user", f: f %>
   <%= render "general_forms/address", f: f %>
+  <%= render "general_forms/user", f: f %>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

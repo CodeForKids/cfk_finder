@@ -38,7 +38,8 @@
           <% if user_signed_in? %>
             <li class="navbar-text">Logged in as <strong><%= current_user.email %></strong></li>
             <% if current_user.role %>
-              <li><%= link_to 'Edit Profile', edit_parent_path(current_user.role) %></li>
+              <li><%= link_to 'View Profile', current_user.role %></li>
+              <li><%= link_to 'Edit Profile', [:edit, current_user.role] %></li>
             <% end %>
             <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
           <% else %>
