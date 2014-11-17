@@ -45,6 +45,7 @@ createSearchBox = () ->
       bounds.extend this.geometry.location
     )
     map.fitBounds bounds
+    map.setZoom(zoomLevel)
 
   google.maps.event.addListener map, "bounds_changed", ->
     bounds = map.getBounds()
