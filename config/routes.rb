@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   end
 
   root "home#index"
+  controller :home do
+    get :json_markers, to: :json_markers
+  end
 end
