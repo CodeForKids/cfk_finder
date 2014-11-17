@@ -26,10 +26,12 @@ initialize = ->
   if(document.getElementById('map') != null)
     bounds = new google.maps.LatLngBounds()
     mapOptions =
-      zoom: 4
+      zoom: 13
 
     infoWindow = new google.maps.InfoWindow({})
     map = new google.maps.Map(document.getElementById("map"), mapOptions)
+
+    user_latlong = new google.maps.LatLng($('#map').data("latitude"), $('#map').data("longitude"))
 
     jQuery.each $('#map').data('markers'), (->
       myLatLng = new google.maps.LatLng(this["latitude"], this["longitude"])
@@ -37,6 +39,6 @@ initialize = ->
       createMarker(myLatLng, this["title"], this["content"])
     )
 
-    map.fitBounds(bounds)
+    map.setCenter(user_latlong)
 
 $(document).on('ready page:load', initialize);

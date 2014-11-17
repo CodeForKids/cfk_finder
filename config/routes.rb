@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     resources :kids, except: :index
   end
 
-  root "application#index"
+  root "home#index"
 end

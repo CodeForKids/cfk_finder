@@ -7,4 +7,8 @@ class Address < ActiveRecord::Base
   def full_street_address
     [address1, address2, postal_code, city, province, country].reject(&:blank?).join(", ")
   end
+
+  def lat_long
+    [latitude, longitude].reject(&:blank?).join(", ")
+  end
 end
