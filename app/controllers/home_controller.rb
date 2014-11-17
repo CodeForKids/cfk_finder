@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   def index
     @current_location = current_user ? current_user.role.address : request.location
     @addresses = Address.all.includes(:owner)
-    modifier = @current_location.city.present? ? "to be #{@current_location.city}, please make sure this is correct." : "automatically, please make sure this is correct"
+    modifier = @current_location.city.present? ? "to be #{@current_location.city}, please make sure this is correct." : "automatically, please make sure it is correct"
     flash[:notice] = "We detected your location #{modifier}"
   end
 
