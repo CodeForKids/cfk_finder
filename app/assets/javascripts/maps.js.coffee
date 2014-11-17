@@ -1,6 +1,15 @@
 markers = []
+markers_hash = new Object()
 map = null
 infoWindow = null
+zoomLevel = 13
+
+root = exports ? this
+root.centerOnMarker = (id) ->
+  marker = markers_hash[id]
+  map.setCenter(marker.position)
+  map.setZoom(zoomLevel-5)
+  google.maps.event.trigger( marker, 'click' );
 
 makeContentString = (contentString, marker) ->
   "<div id=\"content\">" +
@@ -8,7 +17,7 @@ makeContentString = (contentString, marker) ->
   "<div id=\"bodyContent\">#{contentString}</div>" +
   "</div>"
 
-createMarker = (myLatLng, title, contentString, i) ->
+createMarker = (myLatLng, title, contentString, id) ->
   marker = new google.maps.Marker(
     position: myLatLng
     map: map
@@ -20,6 +29,7 @@ createMarker = (myLatLng, title, contentString, i) ->
     infoWindow.open map, marker
 
   markers.push(marker)
+  markers_hash[id] = marker
   marker
 
 createSearchBox = () ->
@@ -44,7 +54,7 @@ initialize = ->
   if(document.getElementById('map') != null)
     bounds = new google.maps.LatLngBounds()
     mapOptions =
-      zoom: 13
+      zoom: zoomLevel
 
     infoWindow = new google.maps.InfoWindow({})
     map = new google.maps.Map(document.getElementById("map"), mapOptions)
@@ -55,7 +65,7 @@ initialize = ->
       jQuery.each json_markers, (->
         myLatLng = new google.maps.LatLng(this["latitude"], this["longitude"])
         bounds.extend(myLatLng)
-        createMarker(myLatLng, this["title"], this["content"])
+        createMarker(myLatLng, this["title"], this["content"], this["id"])
       )
     )
 

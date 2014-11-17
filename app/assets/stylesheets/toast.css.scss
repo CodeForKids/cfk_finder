@@ -1,0 +1,74 @@
+$gutter-depth-in-pixels: 15px;
+
+#toasts { display: none; }
+#toast {
+  background: #479ccf; //Change For Message Background Colour
+
+  position: fixed;
+  width:300px;
+  padding: 10px;
+  margin-left: -150px;
+  color: #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+  opacity: 0.0;
+  z-index: 10;
+
+  bottom: 15px;
+  left: 50%;
+
+  -webkit-box-shadow: 0px -5px 30px rgba(50, 50, 50, 0.4);
+  -moz-box-shadow:    0px -5px 30px rgba(50, 50, 50, 0.4);
+  box-shadow:         0px -5px 30px rgba(50, 50, 50, 0.4);
+
+  -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -kthtml-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+#toast.error {
+  background: #A41920 //Change For Error Background Colour
+}
+
+#toast.active {
+  bottom: 30px;
+  opacity: 0.95;
+
+  -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -kthtml-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+// **** POSITIONING **** //
+
+#toast.top-left {
+  left: $gutter-depth-in-pixels;
+  top: $gutter-depth-in-pixels;
+  bottom: initial;
+}
+
+#toast.top-middle {
+  left: 50%;
+  top: $gutter-depth-in-pixels;
+  bottom: initial;
+}
+
+#toast.top-right {
+  right: $gutter-depth-in-pixels;
+  top: $gutter-depth-in-pixels;
+  bottom: initial;
+}
+
+#toast.bottom-left {
+  left: $gutter-depth-in-pixels;
+}
+
+#toast.bottom-right {
+  right: $gutter-depth-in-pixels;
+}

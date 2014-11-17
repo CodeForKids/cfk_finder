@@ -1,0 +1,10 @@
+<div id="toast"></div>
+<% unless flash.empty? %>
+  <ul id="toasts">
+    <% flash.each do |key, message| %>
+      <% message.split("\n").each do |submessage| %>
+        <li data-toast-type="<%= key %>"><%= html_escape submessage %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

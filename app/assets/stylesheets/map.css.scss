@@ -1,8 +1,14 @@
 #map {
   height: 100%;
-  margin: 0px;
-  padding: 0px
+  width: 100%;
+  position: fixed !important;
 }
+.map-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .controls {
   margin-top: 16px;
   border: 1px solid transparent;
