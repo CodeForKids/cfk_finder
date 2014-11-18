@@ -4,7 +4,7 @@ gem 'rails', '4.1.7'
 gem 'mysql2'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'date_validator'
 gem 'devise'
 gem 'geocoder'
