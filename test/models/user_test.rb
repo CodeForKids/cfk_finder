@@ -12,4 +12,9 @@ class UserTest < ActiveSupport::TestCase
     end
     assert_equal "You cannot change your role", error.message
   end
+
+  test "has role method that work" do
+    assert @user.parent?, "User was not a parent"
+    assert_not @user.tutor?, "User was a tutor"
+  end
 end

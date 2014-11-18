@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   before_action :authenticate_view!, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_creation!, only: [:new, :create]
 
+  before_action :check_params
+
   skip_before_action :finish_signup, only: [:new, :create]
 
   def show
@@ -123,6 +125,10 @@ class UsersController < ApplicationController
   # We then singularize this to tutor
   def controller
     params[:controller].singularize
+  end
+
+  def check_params
+    raise "You did not override resource_params!" if resource_params.empty?
   end
 
   # To be overriden in the subclass

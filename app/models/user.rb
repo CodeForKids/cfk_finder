@@ -15,12 +15,10 @@ class User < ActiveRecord::Base
     ]
   end
 
-  def parent?
-    role_type == "Parent"
-  end
-
-  def tutor?
-    role_type == "Tutor"
+  %w( Parent Tutor ).each do |role|
+    define_method("#{role.downcase}?") do
+      role_type == role
+    end
   end
 
   private
