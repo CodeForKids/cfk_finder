@@ -8,5 +8,6 @@
 
 $(document).on "ready page:load", ->
   $('.datepicker').datepicker({
-    startView: 2
+    startView: 2,
+    format: 'dd-mm-yyyy',
   })
