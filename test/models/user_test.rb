@@ -17,4 +17,9 @@ class UserTest < ActiveSupport::TestCase
     assert @user.parent?, "User was not a parent"
     assert_not @user.tutor?, "User was a tutor"
   end
+
+  test "token_hash" do
+    hash = { authentication_token: "12345", email: "julian@example.com", id: 1032740943 }
+    assert_equal hash, @user.token_hash
+  end
 end

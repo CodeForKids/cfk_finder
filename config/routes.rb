@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   root "home#index"
   controller :home do
     get :json_markers, to: :json_markers
+    post :auth_token, to: :authenticate
   end
+
 end

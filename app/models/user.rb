@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def token_hash
+    { authentication_token: authentication_token, email: email, id: id }
+  end
+
  private
 
   def generate_authentication_token

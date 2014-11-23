@@ -19,6 +19,8 @@ two:
   postal_code: K1N5T5
   owner_id: 2
   owner_type: "Parent"
+  latitude: 123
+  longitude: 123
 
 three:
   address1: 150 Elgin
@@ -29,6 +31,8 @@ three:
   postal_code: K1N5T5
   owner_id: 1
   owner_type: "Tutor"
+  latitude: 123
+  longitude: 123
 
 four:
   address1: 150 Elgin
@@ -39,3 +43,5 @@ four:
   postal_code: K1N5T5
   owner_id: 2
   owner_type: "Tutor"
+  latitude: 123
+  longitude: 123

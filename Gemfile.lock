@@ -78,9 +78,12 @@ GEM
     json (1.8.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (2.4.3)
     minitest (5.4.3)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     multi_json (1.10.1)
     mysql2 (0.3.17)
     orm_adapter (0.5.0)
@@ -163,6 +166,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
+  mocha
   mysql2
   pry
   rails (= 4.1.7)
