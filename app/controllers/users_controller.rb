@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :created, location: resource }
       else
         format.html { render :new }
-        format.json { render json: resource.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: resource.errors }, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :ok, location: resource }
       else
         format.html { render :edit }
-        format.json { render json: resource.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: resource.errors }, status: :unprocessable_entity }
       end
     end
   end
@@ -70,25 +70,35 @@ class UsersController < ApplicationController
   protected
 
   def authenticate!
-    redirect_to current_user.role unless current_user.send("#{controller}?")
+    redirect_auth current_user.role unless current_user.send("#{controller}?")
   end
 
   def authenticate_view!
-    redirect_to current_user.role unless allowed_view?
+    redirect_auth current_user.role unless allowed_view?
   end
 
   # Essentially if the user is not a "role", redirect to root
   # Otherwise if the user has a role_id, redirect to their show page
   # if !current_user.tutor?
-  #   redirect_to root_url
+  #   redirect_auth root_url
   # elsif current_user.role_id.present?
-  #   redirect_to current_user.role
+  #   redirect_auth current_user.role
   # end
   def authenticate_creation!
     if !current_user.send("#{controller}?")
-      redirect_to root_url
+      redirect_auth root_url
     elsif current_user.role_id.present?
-      redirect_to current_user.role
+      redirect_auth current_user.role
+    end
+  end
+
+  # Handles Format for Auth Methods
+  def redirect_auth(url)
+    respond_to do |format|
+      format.html { redirect_to url }
+      format.json do
+        head :unauthorized
+      end
     end
   end
 

@@ -2,26 +2,32 @@ parent:
   email: "julian@example.com"
   role_id: 1
   role_type: "Parent"
+  authentication_token: "12345"
 
 parent2:
   email: "josh@example.com"
   role_id: 2
   role_type: "Parent"
+  authentication_token: "12346"
 
 no_role_id_parent:
   email: "john@example.com"
   role_type: "Parent"
+  authentication_token: "12347"
 
 tutor:
   email: "tutor@example.com"
   role_id: 1
   role_type: "Tutor"
+  authentication_token: "12348"
 
 tutor2:
   email: "tutor2@example.com"
   role_id: 2
   role_type: "Tutor"
+  authentication_token: "12349"
 
 no_role_id_tutor:
   email: "john_tutor@example.com"
   role_type: "Tutor"
+  authentication_token: "12340"

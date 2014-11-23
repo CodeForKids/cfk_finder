@@ -11,4 +11,15 @@ class Address < ActiveRecord::Base
   def lat_long
     [latitude, longitude].reject(&:blank?).join(", ")
   end
+
+  def to_builder
+    Jbuilder.new do |address|
+      address.address1
+      address.address2
+      address.city
+      address.province
+      address.country
+      address.postal_code
+    end
+  end
 end

@@ -3,8 +3,6 @@ require 'test_helper'
 class ParentsControllerTest < ActionController::TestCase
   setup do
     @parent = parents(:one)
-    sign_in(@parent.user)
-
     @parent2 = parents(:two)
     @no_role_id = users(:no_role_id_parent)
   end
@@ -37,11 +35,15 @@ class ParentsControllerTest < ActionController::TestCase
   ##################
 
   test "should redirect from new when user has a role id" do
+    sign_in(@parent.user)
+
     get :new
     assert_response :redirect
   end
 
   test "should not create parent when user has a role id" do
+    sign_in(@parent.user)
+
     assert_no_difference('Parent.count') do
       post :create, parent: { first_name: "", last_name: "Chartrand" }
     end
@@ -49,6 +51,8 @@ class ParentsControllerTest < ActionController::TestCase
   end
 
   test "should show parent" do
+    sign_in(@parent.user)
+
     get :show, id: @parent
     assert_response :success
     parent = assigns(:parent)
@@ -57,11 +61,15 @@ class ParentsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    sign_in(@parent.user)
+
     get :edit, id: @parent
     assert_response :success
   end
 
   test "should update parent" do
+    sign_in(@parent.user)
+
     patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
     assert_redirected_to parent_path(assigns(:parent))
 
@@ -71,6 +79,8 @@ class ParentsControllerTest < ActionController::TestCase
   end
 
   test "should not update parent" do
+    sign_in(@parent.user)
+
     patch :update, id: @parent, parent: { first_name: "", last_name: "Chartrand" }
 
     assert_template :edit
@@ -78,11 +88,52 @@ class ParentsControllerTest < ActionController::TestCase
   end
 
   test "should destroy parent" do
+    sign_in(@parent.user)
+
     assert_difference('Parent.count', -1) do
       delete :destroy, id: @parent
     end
 
     assert_redirected_to root_url
+  end
+
+  #############
+  # JSON Tests
+  #############
+
+  test "should show parent as json" do
+    api_sign_in(@parent)
+
+    get :show, id: @parent, format: :json
+    assert_response :success
+    parent = JSON.parse response.body
+    assert_equal @parent.first_name, parent["first_name"]
+    assert_equal @parent.last_name, parent["last_name"]
+  end
+
+  test "should update parent as json" do
+    api_sign_in(@parent)
+
+    patch :update, format: :json, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    assert_response :success
+  end
+
+  test "should not update parent as json" do
+    api_sign_in(@parent)
+
+    patch :update, format: :json, id: @parent, parent: { first_name: "", last_name: "Chartrand" }
+    assert_response 422
+    json = JSON.parse response.body
+    assert_equal ["can't be blank"], json["errors"]["first_name"]
+  end
+
+  test "should destroy parent as json" do
+    api_sign_in(@parent)
+
+    assert_difference('Parent.count', -1) do
+      delete :destroy, id: @parent, format: :json
+    end
+    assert_response :success
   end
 
   ########################################
@@ -123,6 +174,66 @@ class ParentsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to parent_path(@parent2)
+  end
+
+  ########################################
+  # No Access Tests Without sign in
+  ########################################
+
+  test "should not show parent without signin" do
+    get :show, id: @parent
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should not get edit without signin" do
+    get :edit, id: @parent
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should not update without signin" do
+    patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    assert_redirected_to new_user_session_path
+
+    parent = Parent.find(@parent.id)
+    assert_equal parent.first_name, @parent.first_name
+    assert_equal parent.last_name, @parent.last_name
+  end
+
+  test "should not destroy without signin" do
+    assert_no_difference('Parent.count') do
+      delete :destroy, id: @parent
+    end
+
+    assert_redirected_to new_user_session_path
+  end
+
+  ##############################################
+  # No Access Tests From Another Parent As Json
+  ##############################################
+
+  test "should not show parent as json" do
+    api_sign_in(@parent2)
+
+    get :show, id: @parent, format: :json
+    assert_response :unauthorized
+  end
+
+  test "should not update another parent as json" do
+    api_sign_in(@parent2)
+    patch :update, format: :json, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    assert_response :unauthorized
+  end
+
+  test "should not destroy another parent as json" do
+    api_sign_in(@parent2)
+
+    assert_no_difference('Parent.count') do
+      delete :destroy, format: :json, id: @parent
+    end
+
+    assert_response :unauthorized
   end
 
 end

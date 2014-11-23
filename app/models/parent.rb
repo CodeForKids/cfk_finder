@@ -13,6 +13,10 @@ class Parent < ActiveRecord::Base
     [first_name, last_name].reject(&:blank?).join(" ")
   end
 
+  def email
+    user.email
+  end
+
   def user_attributes=(attributes)
     user = self.user
     user.update_with_password(attributes)

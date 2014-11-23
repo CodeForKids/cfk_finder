@@ -5,6 +5,11 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+
+  def api_sign_in(role)
+    @request.headers["X-Entity-Token"] = role.user.authentication_token
+    @request.headers["X-Entity-Email"] = role.user.email
+  end
 end
 
 class ActionController::TestCase
