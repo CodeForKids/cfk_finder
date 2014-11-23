@@ -1,7 +1,15 @@
 require 'test_helper'
 
 class AddressTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @address = addresses(:one)
+  end
+
+  test "full_street_address" do
+    assert_equal "150 Elgin, Suite 600, K1N5T5, Ottawa, Ontario, Canada", @address.full_street_address
+  end
+
+  test "latlong" do
+    assert_equal "123.0, 123.0", @address.lat_long
+  end
 end

@@ -7,6 +7,8 @@ one:
   postal_code: K1N5T5
   owner_id: 1
   owner_type: "Parent"
+  latitude: 123
+  longitude: 123
 
 two:
   address1: 150 Elgin
