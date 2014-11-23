@@ -12,6 +12,16 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Handles Format for Auth Methods
+  def redirect_auth(url)
+    respond_to do |format|
+      format.html { redirect_to url }
+      format.json do
+        head :unauthorized
+      end
+    end
+  end
+
   def authenticate_user_from_token!
     user_email = request.headers["X-Entity-Email"].presence
     user       = user_email && User.find_by_email(user_email)

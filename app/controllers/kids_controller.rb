@@ -18,7 +18,7 @@ class KidsController < RestrictedParentController
         format.json { render :show, status: :created, location: [@parent, @kid] }
       else
         format.html { render :new }
-        format.json { render json: @kid.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @kid.errors }, status: :unprocessable_entity }
       end
     end
   end
@@ -33,7 +33,7 @@ class KidsController < RestrictedParentController
         format.json { render :show, status: :ok, location: [@parent, @kid] }
       else
         format.html { render :edit }
-        format.json { render json: @kid.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @kid.errors }, status: :unprocessable_entity }
       end
     end
   end

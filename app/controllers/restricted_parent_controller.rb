@@ -7,11 +7,11 @@ class RestrictedParentController < ApplicationController
   protected
 
   def authenticate!
-    redirect_to current_user.role unless current_user.parent?
+    redirect_auth current_user.role unless current_user.parent?
   end
 
   def authenticate_view!
-    redirect_to current_user.role unless allowed_view?
+    redirect_auth current_user.role unless allowed_view?
   end
 
   def allowed_view?

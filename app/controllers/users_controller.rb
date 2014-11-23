@@ -92,16 +92,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # Handles Format for Auth Methods
-  def redirect_auth(url)
-    respond_to do |format|
-      format.html { redirect_to url }
-      format.json do
-        head :unauthorized
-      end
-    end
-  end
-
   # If the controller is TutorsController, this will essentially be
   # current_user.tutor? && @resource == current_user.role
   # This requires the user model to implement the role? method
