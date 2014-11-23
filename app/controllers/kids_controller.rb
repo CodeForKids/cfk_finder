@@ -15,7 +15,7 @@ class KidsController < RestrictedParentController
     respond_to do |format|
       if @kid.save
         format.html { redirect_to [@parent, @kid], notice: 'Kid was successfully created.' }
-        format.json { render :show, status: :created, location: @kid }
+        format.json { render :show, status: :created, location: [@parent, @kid] }
       else
         format.html { render :new }
         format.json { render json: @kid.errors, status: :unprocessable_entity }
@@ -30,7 +30,7 @@ class KidsController < RestrictedParentController
     respond_to do |format|
       if @kid.update(kid_params)
         format.html { redirect_to [@parent, @kid], notice: 'Kid was successfully updated.' }
-        format.json { render :show, status: :ok, location: @kid }
+        format.json { render :show, status: :ok, location: [@parent, @kid] }
       else
         format.html { render :edit }
         format.json { render json: @kid.errors, status: :unprocessable_entity }
