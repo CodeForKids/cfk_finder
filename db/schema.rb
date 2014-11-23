@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122214547) do
+ActiveRecord::Schema.define(version: 20141123045815) do
 
   create_table "addresses", force: true do |t|
     t.string   "address1"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20141122214547) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "gender"
-    t.datetime "date_of_birth"
+    t.date     "date_of_birth"
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20141122214547) do
   create_table "tutors", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "date_of_birth"
+    t.date     "date_of_birth"
     t.integer  "max_students"
     t.datetime "created_at"
     t.datetime "updated_at"
