@@ -4,12 +4,12 @@ one:
   first_name: Bob
   last_name: Smith
   gender: Male
-  date_of_birth: 2000-11-15 15:53:50
+  date_of_birth: 2000-11-15
   parent_id: 1
 
 two:
   first_name: Jane
   last_name: Smith
   gender: Female
-  date_of_birth: 2000-11-15 15:53:50
+  date_of_birth: 2000-11-15
   parent_id: 1

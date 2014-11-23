@@ -4,12 +4,12 @@ one:
   id: 1
   first_name: john
   last_name: smith
-  date_of_birth: MyString
+  date_of_birth: 1970-07-07
   max_students: 1
 
 two:
   id: 2
   first_name: bob
   last_name: smith
-  date_of_birth: MyString
+  date_of_birth: 1970-07-07
   max_students: 1

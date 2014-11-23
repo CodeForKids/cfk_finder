@@ -26,3 +26,5 @@ group :development, :test do
   gem 'ffaker', github: "emmanueloga/ffaker"
   gem 'pry'
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
