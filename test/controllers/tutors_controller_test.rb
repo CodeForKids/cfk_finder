@@ -106,9 +106,9 @@ class TutorsControllerTest < ActionController::TestCase
 
     get :show, id: @tutor, format: :json
     assert_response :success
-    tutor = assigns(:tutor)
-    assert_equal tutor.first_name, @tutor.first_name
-    assert_equal tutor.last_name, @tutor.last_name
+    tutor = JSON.parse response.body
+    json_has_keys(tutor, :id, :first_name, :last_name, :date_of_birth, :max_students, :email, :address, :updated_at, :created_at)
+    json_has_keys(tutor["address"], :address1, :address2, :city, :province, :country, :postal_code)
   end
 
   test "should update tutor as json" do

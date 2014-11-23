@@ -10,6 +10,12 @@ class ActiveSupport::TestCase
     @request.headers["X-Entity-Token"] = role.user.authentication_token
     @request.headers["X-Entity-Email"] = role.user.email
   end
+
+  def json_has_keys(json, *keys)
+    keys.each do |key|
+      assert json.has_key?(key.to_s), "JSON did not have #{key.to_s} key"
+    end
+  end
 end
 
 class ActionController::TestCase

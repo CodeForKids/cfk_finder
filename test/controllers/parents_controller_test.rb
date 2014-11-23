@@ -107,8 +107,9 @@ class ParentsControllerTest < ActionController::TestCase
     get :show, id: @parent, format: :json
     assert_response :success
     parent = JSON.parse response.body
-    assert_equal @parent.first_name, parent["first_name"]
-    assert_equal @parent.last_name, parent["last_name"]
+    json_has_keys(parent, :id, :first_name, :last_name, :email, :address, :kids, :updated_at, :created_at)
+    json_has_keys(parent["address"], :address1, :address2, :city, :province, :country, :postal_code)
+    json_has_keys(parent["kids"].first, :id, :first_name, :last_name, :gender, :parent_id, :updated_at, :created_at)
   end
 
   test "should update parent as json" do
