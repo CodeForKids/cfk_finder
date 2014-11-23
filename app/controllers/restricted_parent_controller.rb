@@ -26,14 +26,22 @@ class RestrictedParentController < ApplicationController
     @resource = resource_constant.find(params[:id])
   end
 
+  # Example:
+  # If we are subclassing this in KidsController,
+  # controller will be "kid", so this will
+  # capitalize and constantize it to "Kid"
   def resource_constant
     controller.humanize.constantize
   end
 
+  # Example:
+  # If we are calling this from the subclasses "KidsController"
+  # we will get "Kids", and this will return "Kid"
   def controller
     params[:controller].singularize
   end
 
+  # To be overriden in subclasses
   def resource_params
     {}
   end
