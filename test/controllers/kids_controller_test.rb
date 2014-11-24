@@ -94,6 +94,10 @@ class KidsControllerTest < ActionController::TestCase
       post :create, parent_id: @parent, kid: { date_of_birth: @kid.date_of_birth, first_name: @kid.first_name, gender: @kid.gender, last_name: @kid.last_name }, format: :json
     end
     assert_response :success
+
+    activity = Activity.last
+    assert_equal "created", activity.action
+    assert_equal Kid.last, activity.trackable
   end
 
   test "should not create kid as json" do
@@ -127,7 +131,9 @@ class KidsControllerTest < ActionController::TestCase
 
     # Checks Activity for the proper parameters
     activity = Activity.last
-    check_activities(activity, ["first_name"], ["last_name", "updated_at"])
+    check_activities(activity, ["first_name"], ["last_name", "cupdated_at"])
+    assert_equal "updated", activity.action
+    assert_equal @kid, activity.trackable
   end
 
   test "should not update kid as json" do
@@ -150,6 +156,10 @@ class KidsControllerTest < ActionController::TestCase
       end
     end
     assert_response :success
+
+    activity = Activity.last
+    assert_equal "destroyed", activity.action
+    assert_equal nil, activity.trackable
   end
 
   ######################

@@ -10,12 +10,12 @@ class BaseModel < ActiveRecord::Base
   end
 
   after_create do
-    Activity.register_activity(User.current_user, self, User.current_ip_address, "created")
+    Activity.register_activity(User.current_user, self, "created", User.current_ip_address)
     true
   end
 
   after_destroy do
-    Activity.register_activity(User.current_user, self, User.current_ip_address, "destroyed")
+    Activity.register_activity(User.current_user, self, "destroyed", User.current_ip_address)
     true
   end
 
