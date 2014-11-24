@@ -1,4 +1,4 @@
-class Address < ActiveRecord::Base
+class Address < BaseModel
   belongs_to :owner, :polymorphic => true
 
   geocoded_by :full_street_address

@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :finish_signup, if: :user_not_finished_signup?
 
+  before_filter :set_current_user
+
   protected
 
   # Handles Format for Auth Methods
@@ -50,6 +52,12 @@ class ApplicationController < ActionController::Base
     else
       redirect_to root_url and return
     end
+  end
+
+  private
+
+  def set_current_user
+    User.current_user = current_user
   end
 
 end

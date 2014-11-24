@@ -22,6 +22,7 @@ class HomeControllerTest < ActionController::TestCase
     assert_equal @parent.address, assigns(:current_location)
     assert assigns(:addresses).count > 1, "Did not have at least 1 address"
     assert_equal "We detected your location automatically, please make sure it is correct.", flash[:notice]
+    assert_equal @parent.user, User.current_user
   end
 
   test "should get index of home without location" do
@@ -56,6 +57,7 @@ class HomeControllerTest < ActionController::TestCase
 
     post :authenticate, format: :json
     assert_response 400
+    assert_equal @parent.user, User.current_user
   end
 
   test "should not authenticate with email and wrong password" do

@@ -21,7 +21,7 @@ class TutorsControllerTest < ActionController::TestCase
   test "should create tutor when user doesn't has a role id" do
     sign_in(@no_role_id)
 
-    assert_difference('Tutor.count') do
+    assert_difference(['Tutor.count', 'Activity.count']) do
       post :create, tutor: { first_name: "John", last_name: "Smith" }
     end
 
@@ -70,9 +70,11 @@ class TutorsControllerTest < ActionController::TestCase
   test "should update tutor" do
     sign_in(@tutor.user)
 
-    patch :update, id: @tutor, tutor: { first_name: "Josh", last_name: "Chartrand" }
-    assert_redirected_to tutor_path(assigns(:tutor))
+    assert_difference ('Activity.count') do
+      patch :update, id: @tutor, tutor: { first_name: "Josh", last_name: "Chartrand" }
+    end
 
+    assert_redirected_to tutor_path(assigns(:tutor))
     tutor = assigns(:tutor)
     assert_equal tutor.first_name, "Josh"
     assert_equal tutor.last_name, "Chartrand"
@@ -81,7 +83,9 @@ class TutorsControllerTest < ActionController::TestCase
   test "should not update tutor" do
     sign_in(@tutor.user)
 
-    patch :update, id: @tutor, tutor: { first_name: "", last_name: "Chartrand" }
+    assert_no_difference (['Tutor.count', 'Activity.count']) do
+      patch :update, id: @tutor, tutor: { first_name: "", last_name: "Chartrand" }
+    end
 
     assert_template :edit
     assert_equal "First name can't be blank", assigns(:tutor).errors.full_messages.to_sentence
@@ -90,8 +94,10 @@ class TutorsControllerTest < ActionController::TestCase
   test "should destroy tutor" do
     sign_in(@tutor.user)
 
-    assert_difference('Tutor.count', -1) do
-      delete :destroy, id: @tutor
+    assert_difference ('Activity.count') do
+      assert_difference('Tutor.count', -1) do
+        delete :destroy, id: @tutor
+      end
     end
 
     assert_redirected_to root_url
@@ -114,14 +120,24 @@ class TutorsControllerTest < ActionController::TestCase
   test "should update tutor as json" do
     api_sign_in(@tutor)
 
-    patch :update, id: @tutor, tutor: { first_name: "Josh", last_name: "Chartrand" }, format: :json
+    assert_difference ('Activity.count') do
+      patch :update, id: @tutor, tutor: { first_name: "Josh", last_name: "Chartrand" }, format: :json
+    end
+
     assert_response :success
+
+    # Checks Activity for the proper parameters
+    activity = Activity.last
+    check_activities(activity, ["first_name", "last_name"], ["updated_at"])
   end
 
   test "should not update tutor as json" do
     api_sign_in(@tutor)
 
-    patch :update, id: @tutor, tutor: { first_name: "", last_name: "Chartrand" }, format: :json
+    assert_no_difference ('Activity.count') do
+      patch :update, id: @tutor, tutor: { first_name: "", last_name: "Chartrand" }, format: :json
+    end
+
     assert_response 422
     json = JSON.parse response.body
     assert_equal ["can't be blank"], json["errors"]["first_name"]
@@ -130,8 +146,10 @@ class TutorsControllerTest < ActionController::TestCase
   test "should destroy tutor as json" do
     api_sign_in(@tutor)
 
-    assert_difference('Tutor.count', -1) do
-      delete :destroy, id: @tutor, format: :json
+    assert_difference ('Activity.count') do
+      assert_difference('Tutor.count', -1) do
+        delete :destroy, id: @tutor, format: :json
+      end
     end
 
     assert_response :success
@@ -160,9 +178,11 @@ class TutorsControllerTest < ActionController::TestCase
   test "should not update another tutor" do
     sign_in(@tutor2.user)
 
-    patch :update, id: @tutor, tutor: { first_name: "Josh", last_name: "Chartrand" }
-    assert_redirected_to tutor_path(@tutor2)
+    assert_no_difference ('Activity.count') do
+      patch :update, id: @tutor, tutor: { first_name: "Josh", last_name: "Chartrand" }
+    end
 
+    assert_redirected_to tutor_path(@tutor2)
     tutor = Tutor.find(@tutor.id)
     assert_equal tutor.first_name, @tutor.first_name
     assert_equal tutor.last_name, @tutor.last_name
@@ -171,7 +191,7 @@ class TutorsControllerTest < ActionController::TestCase
   test "should not destroy another tutor" do
     sign_in(@tutor2.user)
 
-    assert_no_difference('Tutor.count') do
+    assert_no_difference(['Tutor.count', 'Activity.count']) do
       delete :destroy, id: @tutor
     end
 
@@ -195,16 +215,18 @@ class TutorsControllerTest < ActionController::TestCase
   end
 
   test "should not update without signin" do
-    patch :update, id: @tutor, parent: { first_name: "Josh", last_name: "Chartrand" }
-    assert_redirected_to new_user_session_path
+    assert_no_difference ('Activity.count') do
+      patch :update, id: @tutor, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
 
+    assert_redirected_to new_user_session_path
     tutor = Tutor.find(@tutor.id)
     assert_equal tutor.first_name, @tutor.first_name
     assert_equal tutor.last_name, @tutor.last_name
   end
 
   test "should not destroy without signin" do
-    assert_no_difference('Tutor.count') do
+    assert_no_difference(['Tutor.count', 'Activity.count']) do
       delete :destroy, id: @tutor
     end
 
@@ -224,14 +246,18 @@ class TutorsControllerTest < ActionController::TestCase
 
   test "should not update another tutor as json" do
     api_sign_in(@tutor2)
-    patch :update, format: :json, id: @tutor, parent: { first_name: "Josh", last_name: "Chartrand" }
+
+    assert_no_difference ('Activity.count') do
+      patch :update, format: :json, id: @tutor, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
+
     assert_response :unauthorized
   end
 
   test "should not destroy another tutor as json" do
     api_sign_in(@tutor2)
 
-    assert_no_difference('Tutor.count') do
+    assert_no_difference(['Tutor.count', 'Activity.count']) do
       delete :destroy, format: :json, id: @tutor
     end
 

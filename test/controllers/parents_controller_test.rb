@@ -21,7 +21,7 @@ class ParentsControllerTest < ActionController::TestCase
   test "should create parent when user doesn't has a role id" do
     sign_in(@no_role_id)
 
-    assert_difference('Parent.count') do
+    assert_difference(['Parent.count', 'Activity.count']) do
       post :create, parent: { first_name: "John", last_name: "Smith" }
     end
 
@@ -44,7 +44,7 @@ class ParentsControllerTest < ActionController::TestCase
   test "should not create parent when user has a role id" do
     sign_in(@parent.user)
 
-    assert_no_difference('Parent.count') do
+    assert_no_difference(['Parent.count', 'Activity.count']) do
       post :create, parent: { first_name: "", last_name: "Chartrand" }
     end
     assert_redirected_to parent_path(@parent)
@@ -70,18 +70,26 @@ class ParentsControllerTest < ActionController::TestCase
   test "should update parent" do
     sign_in(@parent.user)
 
-    patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
-    assert_redirected_to parent_path(assigns(:parent))
+    assert_difference ('Activity.count') do
+      patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
 
+    assert_redirected_to parent_path(assigns(:parent))
     parent = assigns(:parent)
     assert_equal parent.first_name, "Josh"
     assert_equal parent.last_name, "Chartrand"
+
+    # Checks Activity for the proper parameters
+    activity = Activity.last
+    check_activities(activity, ["first_name", "last_name"], ["updated_at"])
   end
 
   test "should not update parent" do
     sign_in(@parent.user)
 
-    patch :update, id: @parent, parent: { first_name: "", last_name: "Chartrand" }
+    assert_no_difference ('Activity.count') do
+      patch :update, id: @parent, parent: { first_name: "", last_name: "Chartrand" }
+    end
 
     assert_template :edit
     assert_equal "First name can't be blank", assigns(:parent).errors.full_messages.to_sentence
@@ -90,8 +98,10 @@ class ParentsControllerTest < ActionController::TestCase
   test "should destroy parent" do
     sign_in(@parent.user)
 
-    assert_difference('Parent.count', -1) do
-      delete :destroy, id: @parent
+    assert_difference ('Activity.count') do
+      assert_difference('Parent.count', -1) do
+        delete :destroy, id: @parent
+      end
     end
 
     assert_redirected_to root_url
@@ -115,14 +125,20 @@ class ParentsControllerTest < ActionController::TestCase
   test "should update parent as json" do
     api_sign_in(@parent)
 
-    patch :update, format: :json, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    assert_difference ('Activity.count') do
+      patch :update, format: :json, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
+
     assert_response :success
   end
 
   test "should not update parent as json" do
     api_sign_in(@parent)
 
-    patch :update, format: :json, id: @parent, parent: { first_name: "", last_name: "Chartrand" }
+    assert_no_difference ('Activity.count') do
+      patch :update, format: :json, id: @parent, parent: { first_name: "", last_name: "Chartrand" }
+    end
+
     assert_response 422
     json = JSON.parse response.body
     assert_equal ["can't be blank"], json["errors"]["first_name"]
@@ -159,7 +175,11 @@ class ParentsControllerTest < ActionController::TestCase
 
   test "should not update another parent" do
     sign_in(@parent2.user)
-    patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+
+    assert_no_difference ('Activity.count') do
+      patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
+
     assert_redirected_to parent_path(@parent2)
 
     parent = Parent.find(@parent.id)
@@ -170,7 +190,7 @@ class ParentsControllerTest < ActionController::TestCase
   test "should not destroy another parent" do
     sign_in(@parent2.user)
 
-    assert_no_difference('Parent.count') do
+    assert_no_difference(['Parent.count', 'Activity.count']) do
       delete :destroy, id: @parent
     end
 
@@ -194,7 +214,9 @@ class ParentsControllerTest < ActionController::TestCase
   end
 
   test "should not update without signin" do
-    patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    assert_no_difference ('Activity.count') do
+      patch :update, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
     assert_redirected_to new_user_session_path
 
     parent = Parent.find(@parent.id)
@@ -203,7 +225,7 @@ class ParentsControllerTest < ActionController::TestCase
   end
 
   test "should not destroy without signin" do
-    assert_no_difference('Parent.count') do
+    assert_no_difference(['Parent.count', 'Activity.count']) do
       delete :destroy, id: @parent
     end
 
@@ -223,14 +245,18 @@ class ParentsControllerTest < ActionController::TestCase
 
   test "should not update another parent as json" do
     api_sign_in(@parent2)
-    patch :update, format: :json, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+
+    assert_no_difference ('Activity.count') do
+      patch :update, format: :json, id: @parent, parent: { first_name: "Josh", last_name: "Chartrand" }
+    end
+
     assert_response :unauthorized
   end
 
   test "should not destroy another parent as json" do
     api_sign_in(@parent2)
 
-    assert_no_difference('Parent.count') do
+    assert_no_difference(['Parent.count', 'Activity.count']) do
       delete :destroy, format: :json, id: @parent
     end
 

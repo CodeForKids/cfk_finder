@@ -2,13 +2,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable
 
+  has_many :activities, as: :owner
   belongs_to :role, :polymorphic => true
   validates :role_type, inclusion: { in: %w( Parent Tutor ) }
   before_validation(on: :update) do
     raise "You cannot change your role" if cannot_change_role?
+    Activity.register_activity(User.current_user, self, "changed their password") if self.encrypted_password_changed?
+    true
   end
 
   before_save :ensure_authentication_token
+
+  delegate :name, to: :role
 
   def self.roles
     [
@@ -32,6 +37,16 @@ class User < ActiveRecord::Base
 
   def token_hash
     { authentication_token: authentication_token, email: email, id: id }
+  end
+
+  class << self
+    def current_user=(user)
+      Thread.current[:current_user] = user
+    end
+
+    def current_user
+      Thread.current[:current_user]
+    end
   end
 
  private

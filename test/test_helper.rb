@@ -19,6 +19,16 @@ class ActiveSupport::TestCase
       assert json.has_key?(key.to_s), "JSON did not have #{key.to_s} key"
     end
   end
+
+  def check_activities(activity, has, not_have)
+    has.each do |key|
+      assert activity.parameters.has_key?(key), "Parameters did not have #{key}"
+    end
+
+    not_have.each do |key|
+      assert_not activity.parameters.has_key?(key), "Parameters had #{key}"
+    end
+  end
 end
 
 class ActionController::TestCase

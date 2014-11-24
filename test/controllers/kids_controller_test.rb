@@ -21,7 +21,7 @@ class KidsControllerTest < ActionController::TestCase
   test "should create kid" do
     sign_in(@parent.user)
 
-    assert_difference('Kid.count') do
+    assert_difference(['Kid.count', 'Activity.count']) do
       post :create, parent_id: @parent, kid: { date_of_birth: @kid.date_of_birth, first_name: @kid.first_name, gender: @kid.gender, last_name: @kid.last_name }
     end
     assert_redirected_to parent_kid_path(@parent, assigns(:kid))
@@ -30,7 +30,7 @@ class KidsControllerTest < ActionController::TestCase
   test "should not create kid" do
     sign_in(@parent.user)
 
-    assert_no_difference('Kid.count') do
+    assert_no_difference(['Kid.count', 'Activity.count']) do
       post :create, parent_id: @parent, kid: { date_of_birth: @kid.date_of_birth, first_name: "", gender: @kid.gender, last_name: @kid.last_name }
     end
     assert_template :new
@@ -54,14 +54,19 @@ class KidsControllerTest < ActionController::TestCase
   test "should update kid" do
     sign_in(@parent.user)
 
-    patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: @kid.first_name, gender: @kid.gender, last_name: @kid.last_name }
+    assert_difference ('Activity.count') do
+      patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: "bobby", gender: @kid.gender, last_name: @kid.last_name }
+    end
+
     assert_redirected_to parent_kid_path(@parent, assigns(:kid))
   end
 
   test "should not update kid" do
     sign_in(@parent.user)
 
-    patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: "", gender: @kid.gender, last_name: @kid.last_name }
+    assert_no_difference ('Activity.count') do
+      patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: "", gender: @kid.gender, last_name: @kid.last_name }
+    end
 
     assert_template :edit
     assert_equal "First name can't be blank", assigns(:kid).errors.full_messages.to_sentence
@@ -70,8 +75,10 @@ class KidsControllerTest < ActionController::TestCase
   test "should destroy kid" do
     sign_in(@parent.user)
 
-    assert_difference('Kid.count', -1) do
-      delete :destroy, parent_id: @parent, id: @kid
+    assert_difference('Activity.count') do
+      assert_difference('Kid.count', -1) do
+        delete :destroy, parent_id: @parent, id: @kid
+      end
     end
     assert_redirected_to parent_path(@parent)
   end
@@ -83,7 +90,7 @@ class KidsControllerTest < ActionController::TestCase
   test "should create kid as json" do
     api_sign_in(@parent)
 
-    assert_difference('Kid.count') do
+    assert_difference(['Kid.count', 'Activity.count']) do
       post :create, parent_id: @parent, kid: { date_of_birth: @kid.date_of_birth, first_name: @kid.first_name, gender: @kid.gender, last_name: @kid.last_name }, format: :json
     end
     assert_response :success
@@ -92,7 +99,7 @@ class KidsControllerTest < ActionController::TestCase
   test "should not create kid as json" do
     api_sign_in(@parent)
 
-    assert_no_difference('Kid.count') do
+    assert_no_difference(['Kid.count', 'Activity.count']) do
       post :create, parent_id: @parent, kid: { date_of_birth: @kid.date_of_birth, first_name: "", gender: @kid.gender, last_name: @kid.last_name }, format: :json
     end
     assert_response 422
@@ -112,14 +119,23 @@ class KidsControllerTest < ActionController::TestCase
   test "should update kid as json" do
     api_sign_in(@parent)
 
-    patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: @kid.first_name, gender: @kid.gender, last_name: @kid.last_name }, format: :json
+    assert_difference ('Activity.count') do
+      patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: "bobby", gender: @kid.gender, last_name: @kid.last_name }, format: :json
+    end
+
     assert_response :success
+
+    # Checks Activity for the proper parameters
+    activity = Activity.last
+    check_activities(activity, ["first_name"], ["last_name", "updated_at"])
   end
 
   test "should not update kid as json" do
     api_sign_in(@parent)
 
-    patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: "", gender: @kid.gender, last_name: @kid.last_name }, format: :json
+    assert_no_difference ('Activity.count') do
+      patch :update, parent_id: @parent, id: @kid, kid: { date_of_birth: @kid.date_of_birth, first_name: "", gender: @kid.gender, last_name: @kid.last_name }, format: :json
+    end
 
     assert_response 422
     json = JSON.parse response.body
@@ -128,9 +144,10 @@ class KidsControllerTest < ActionController::TestCase
 
   test "should destroy kid as json" do
     api_sign_in(@parent)
-
-    assert_difference('Kid.count', -1) do
-      delete :destroy, parent_id: @parent, id: @kid, format: :json
+    assert_difference ('Activity.count') do
+      assert_difference('Kid.count', -1) do
+        delete :destroy, parent_id: @parent, id: @kid, format: :json
+      end
     end
     assert_response :success
   end
@@ -158,7 +175,9 @@ class KidsControllerTest < ActionController::TestCase
   test "should not update another parent's kid" do
     sign_in(@parent2.user)
 
-    patch :update, parent_id: @parent, id: @kid, kid: { first_name: "Not_Update" }
+    assert_no_difference ('Activity.count') do
+      patch :update, parent_id: @parent, id: @kid, kid: { first_name: "Not_Update" }
+    end
     assert_response :redirect
     assert_redirected_to @parent2
   end
@@ -166,7 +185,7 @@ class KidsControllerTest < ActionController::TestCase
   test "should not destroy kid for parent's kid" do
     sign_in(@parent2.user)
 
-    assert_no_difference('Kid.count') do
+    assert_no_difference(['Kid.count', 'Activity.count']) do
       delete :destroy, parent_id: @parent, id: @kid
     end
     assert_response :redirect
@@ -194,14 +213,16 @@ class KidsControllerTest < ActionController::TestCase
   test "should not update another parent's kid as json" do
     api_sign_in(@parent2)
 
-    patch :update, parent_id: @parent, id: @kid, kid: { first_name: "Not_Update" }, format: :json
+    assert_no_difference ('Activity.count') do
+      patch :update, parent_id: @parent, id: @kid, kid: { first_name: "Not_Update" }, format: :json
+    end
     assert_response :unauthorized
   end
 
   test "should not destroy kid for parent's kid as json" do
     api_sign_in(@parent2)
 
-    assert_no_difference('Kid.count') do
+    assert_no_difference(['Kid.count', 'Activity.count']) do
       delete :destroy, parent_id: @parent, id: @kid, format: :json
     end
     assert_response :unauthorized

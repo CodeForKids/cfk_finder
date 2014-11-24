@@ -1,9 +1,9 @@
-class BaseUser < ActiveRecord::Base
+class BaseUser < BaseModel
   self.abstract_class = true
 
   validates :first_name, :last_name, presence: true
 
-  has_one :user, :as => :role
+  has_one :user, as: :role
   accepts_nested_attributes_for :user
 
   has_one :address, as: :owner

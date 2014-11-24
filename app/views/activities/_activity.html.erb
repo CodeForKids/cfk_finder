@@ -1,0 +1,22 @@
+<li class="media">
+  <a class="media-left" href="#">
+    <span class="glyphicon <%= glyphicon_class_for_action(activity.action) %>" style="font-size: 30px;"></span>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= activity.owner.name %> <%= activity.action %> <%= key_word_for_activity(activity.trackable_type, current_user) %>
+      <small><%= distance_of_time_in_words_to_now(activity.created_at) %> ago from <%= activity.ip_address %></small>
+    </h4>
+    <% if activity.parameters.present? %>
+      <a href="#" data-id="<%=activity.id%>" class="see-more" data-shown="false">See More...</a>
+      <div class="changes hide" id="changes-<%= activity.id %>">
+        <% activity.parameters.each do |key, value| %>
+          <dl>
+            <dt><%= key.humanize %></dt>
+            <dd><%= value.humanize %></dd>
+          </dl>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</li>

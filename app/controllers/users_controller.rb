@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   skip_before_action :finish_signup, only: [:new, :create]
 
   def show
+    @activities = current_user.activities.order("created_at DESC")
   end
 
   def new
