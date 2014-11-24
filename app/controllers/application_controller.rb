@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :finish_signup, if: :user_not_finished_signup?
 
-  before_filter :set_current_user
+  before_filter :set_current_user_and_ip
 
   protected
 
@@ -56,8 +56,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_current_user
+  def set_current_user_and_ip
     User.current_user = current_user
+    User.current_ip_address = request.remote_ip
   end
 
 end

@@ -4,18 +4,18 @@ class BaseModel < ActiveRecord::Base
 
   before_validation(on: :update) do
     if self.changes.present?
-      Activity.register_activity(User.current_user, self, "updated", action_params)
+      Activity.register_activity(User.current_user, self, "updated", User.current_ip_address, action_params)
     end
     true
   end
 
   after_create do
-    Activity.register_activity(User.current_user, self, "created")
+    Activity.register_activity(User.current_user, self, User.current_ip_address, "created")
     true
   end
 
   after_destroy do
-    Activity.register_activity(User.current_user, self, "destroyed")
+    Activity.register_activity(User.current_user, self, User.current_ip_address, "destroyed")
     true
   end
 
@@ -24,7 +24,7 @@ class BaseModel < ActiveRecord::Base
   def action_params
     changes = {}
     self.changes.each do |key, change|
-      changes[key] = "changed the value for #{key} from \"#{change.first}\" to \"#{change.last}\"" if valid_key?(key)
+      changes[key] = "changed the value for #{key} from \"#{change.first}\" to \"#{change.last}\"" if valid_key?(key) && change.first != change.last
     end
     changes
   end

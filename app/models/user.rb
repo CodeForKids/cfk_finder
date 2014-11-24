@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :role_type, inclusion: { in: %w( Parent Tutor ) }
   before_validation(on: :update) do
     raise "You cannot change your role" if cannot_change_role?
-    Activity.register_activity(User.current_user, self, "changed their password") if self.encrypted_password_changed?
+    Activity.register_activity(User.current_user, self, "changed their password", User.current_ip_address) if self.encrypted_password_changed?
     true
   end
 
@@ -46,6 +46,14 @@ class User < ActiveRecord::Base
 
     def current_user
       Thread.current[:current_user]
+    end
+
+    def current_ip_address=(ip)
+      Thread.current[:current_ip_address] = ip
+    end
+
+    def current_ip_address
+      Thread.current[:current_ip_address]
     end
   end
 

@@ -4,13 +4,13 @@ class Activity < ActiveRecord::Base
 
   serialize :parameters, Hash
 
-  def self.register_activity(user, trackable, action, params={})
+  def self.register_activity(user, trackable, action, ip_address, params={})
     act = Activity.new
     act.trackable = trackable
     act.owner = user
     act.action = action
     act.parameters = params
-    act.ip_address = user.try(:current_sign_in_ip)
+    act.ip_address = ip_address
     act.save
     true
   end
