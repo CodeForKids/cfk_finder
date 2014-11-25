@@ -15,7 +15,7 @@ class BaseModel < ActiveRecord::Base
   end
 
   after_destroy do
-    Activity.register_activity(User.current_user, self, "destroyed", User.current_ip_address)
+    Activity.register_activity(User.current_user, self, "deleted", User.current_ip_address)
     true
   end
 

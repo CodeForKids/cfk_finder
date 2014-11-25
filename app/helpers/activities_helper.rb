@@ -14,7 +14,7 @@ module ActivitiesHelper
       "glyphicon-repeat"
     elsif action == "created"
       "glyphicon-asterisk"
-    elsif action == "destroyed"
+    elsif action == "deleted"
       "glyphicon-remove"
     elsif action == "changed their password"
       "glyphicon-lock"

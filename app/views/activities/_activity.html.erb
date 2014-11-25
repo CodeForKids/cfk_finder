@@ -8,7 +8,7 @@
       <small><%= distance_of_time_in_words_to_now(activity.created_at) %> ago from <%= activity.ip_address %></small>
     </h4>
     <% if activity.parameters.present? %>
-      <a href="#" data-id="<%=activity.id%>" class="see-more" data-shown="false">See More...</a>
+      <a href="#changes-<%= activity.id %>" data-id="<%=activity.id%>" class="see-more" data-shown="false">See More...</a>
       <div class="changes hide" id="changes-<%= activity.id %>">
         <% activity.parameters.each do |key, value| %>
           <dl>
