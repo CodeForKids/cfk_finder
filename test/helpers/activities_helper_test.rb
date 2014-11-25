@@ -14,7 +14,7 @@ class ActivitiesHelperTest < ActionView::TestCase
   test "glyphicon_class_for_action" do
     assert_equal "glyphicon-repeat", glyphicon_class_for_action("updated")
     assert_equal "glyphicon-asterisk", glyphicon_class_for_action("created")
-    assert_equal "glyphicon-remove", glyphicon_class_for_action("destroyed")
+    assert_equal "glyphicon-remove", glyphicon_class_for_action("deleted")
     assert_equal "glyphicon-lock", glyphicon_class_for_action("changed their password")
     assert_equal "glyphicon-question-sign", glyphicon_class_for_action("unknown")
   end

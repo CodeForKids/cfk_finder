@@ -158,7 +158,7 @@ class KidsControllerTest < ActionController::TestCase
     assert_response :success
 
     activity = Activity.last
-    assert_equal "destroyed", activity.action
+    assert_equal "deleted", activity.action
     assert_equal nil, activity.trackable
   end
 
