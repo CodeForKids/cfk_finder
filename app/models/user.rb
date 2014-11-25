@@ -4,34 +4,22 @@ class User < ActiveRecord::Base
 
   has_many :activities, as: :owner
   belongs_to :role, :polymorphic => true
-  validates :role_type, inclusion: { in: %w( Parent Tutor ) }
+  validates :role_type, inclusion: { in: Proc.new { User.roles } }
   before_validation(on: :update) do
     raise "You cannot change your role" if cannot_change_role?
     Activity.register_activity(User.current_user, self, "changed their password", User.current_ip_address) if self.encrypted_password_changed?
     true
   end
-
   before_save :ensure_authentication_token
-
   delegate :name, to: :role
 
   def self.roles
-    [
-      ["Parent", "Parent"],
-      ["Tutor", "Tutor"],
-      ["Event Organizer", "Tutor"]
-    ]
+    %w( Parent Tutor ).map { |r| r.humanize }
   end
 
-  %w( Parent Tutor ).each do |role|
-    define_method("#{role.downcase}?") do
+  User.roles.each do |role|
+    define_method("#{role.parameterize.downcase}?") do
       role_type == role
-    end
-  end
-
-  def ensure_authentication_token
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
     end
   end
 
@@ -58,6 +46,12 @@ class User < ActiveRecord::Base
   end
 
  private
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
 
   def generate_authentication_token
     loop do
