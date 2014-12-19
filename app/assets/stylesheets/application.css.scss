@@ -1,24 +1,26 @@
 /*
  *= require bootstrap-datepicker3
- *= require devise_bootstrap_views
  *= require_tree .
  *= require_self
 */
 
-@import "bootstrap-sprockets";
-@import "bootswatch/superhero/variables";
-
+@import "bootswatch/flatly/variables";
 @import "bootstrap";
 @import "bootstrap/mixins";
+@import "bootswatch/flatly/bootswatch";
 
-body { padding-top: 60px; }
-
-@import "bootswatch/superhero/bootswatch";
+// FORMS
 
 .form-horizontal .form-group {
   margin-left: 0px;
   margin-right: 0px;
 }
+
+.form-control {
+  padding: 8px 6px;
+}
+
+// GENERAL
 
 .home-content {
   margin-top: -20px;

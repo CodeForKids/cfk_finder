@@ -17,11 +17,9 @@ gem 'jquery-rails'
 
 #Bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
-gem 'bootswatch-rails', github: "maxim/bootswatch-rails"
+gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
-gem 'bootstrap-generators', '~> 3.3.1'
 gem 'bootstrap-datepicker-rails'
-gem 'devise-bootstrap-views'
 
 group :development, :test do
   gem 'ffaker', github: "emmanueloga/ffaker"
