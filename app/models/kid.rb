@@ -6,4 +6,8 @@ class Kid < BaseModel
   def name
     [first_name, last_name].reject(&:blank?).join(" ")
   end
+
+  def url
+    [parent, self]
+  end
 end

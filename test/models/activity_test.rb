@@ -16,4 +16,17 @@ class ActivityTest < ActiveSupport::TestCase
     assert_equal "127.0.0.1", activity.ip_address
     assert_equal kid, activity.trackable
   end
+
+  test "has_url?" do
+    user = users(:parent)
+    kid = user.role.kids.first
+    Activity.register_activity(user, kid, "updated", "127.0.0.1", { first_name: "bob" })
+
+    activity = Activity.first
+    assert activity.has_url?, "Activity did not have url"
+
+    kid.destroy
+    activity = Activity.first
+    assert_not activity.has_url?, "Activity did have url"
+  end
 end

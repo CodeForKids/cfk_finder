@@ -12,4 +12,8 @@ class AddressTest < ActiveSupport::TestCase
   test "latlong" do
     assert_equal "123.0, 123.0", @address.lat_long
   end
+
+  test "has_url?" do
+    assert_not @address.has_url?, "Address had a url!"
+  end
 end

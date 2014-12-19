@@ -24,4 +24,12 @@ class TutorTest < ActiveSupport::TestCase
     @tutor.update(attributes)
     assert_equal "126 Fake St", @tutor.address.address1
   end
+
+  test "url" do
+    assert_equal @tutor, @tutor.url
+  end
+
+  test "has_url?" do
+    assert @tutor.has_url?, "Tutor didn't have a url!"
+  end
 end

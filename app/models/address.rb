@@ -11,4 +11,5 @@ class Address < BaseModel
   def lat_long
     [latitude, longitude].reject(&:blank?).join(", ")
   end
+
 end

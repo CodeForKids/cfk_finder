@@ -13,6 +13,11 @@ class Activity < ActiveRecord::Base
     act.parameters = params
     act.ip_address = ip_address
     act.save
-    true
+    act
   end
+
+  def has_url?
+    trackable && trackable.has_url?
+  end
+
 end

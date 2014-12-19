@@ -4,7 +4,8 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">
-      <%= activity.owner.name %> <%= activity.action %> <%= key_word_for_activity(activity.trackable_type, current_user) %>
+      <%= activity.owner.name %> <%= activity.action %>
+      <%= link_to_if activity.has_url?, key_word_for_activity(activity.trackable_type, current_user), activity.trackable.try(:url) %>
       <small><%= distance_of_time_in_words_to_now(activity.created_at) %> ago from <%= activity.ip_address %></small>
     </h4>
     <% if activity.parameters.present? %>

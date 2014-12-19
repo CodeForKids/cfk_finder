@@ -19,6 +19,10 @@ class BaseModel < ActiveRecord::Base
     true
   end
 
+  def url
+    self
+  end
+
   private
 
   def action_params
