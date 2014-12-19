@@ -9,7 +9,7 @@ class ActivityTest < ActiveSupport::TestCase
       Activity.register_activity(user, kid, "updated", "127.0.0.1", { first_name: "bob" })
     end
 
-    activity = Activity.last
+    activity = Activity.first
     assert_equal "bob", activity.parameters[:first_name]
     assert_equal user, activity.owner
     assert_equal "updated", activity.action

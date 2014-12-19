@@ -127,7 +127,7 @@ class TutorsControllerTest < ActionController::TestCase
     assert_response :success
 
     # Checks Activity for the proper parameters
-    activity = Activity.last
+    activity = Activity.first
     check_activities(activity, ["first_name", "last_name"], ["updated_at"])
   end
 

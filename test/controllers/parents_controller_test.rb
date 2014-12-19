@@ -80,7 +80,7 @@ class ParentsControllerTest < ActionController::TestCase
     assert_equal parent.last_name, "Chartrand"
 
     # Checks Activity for the proper parameters
-    activity = Activity.last
+    activity = Activity.first
     check_activities(activity, ["first_name", "last_name"], ["updated_at"])
   end
 

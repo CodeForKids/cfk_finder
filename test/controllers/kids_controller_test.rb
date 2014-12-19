@@ -95,7 +95,7 @@ class KidsControllerTest < ActionController::TestCase
     end
     assert_response :success
 
-    activity = Activity.last
+    activity = Activity.first
     assert_equal "created", activity.action
     assert_equal Kid.last, activity.trackable
   end
@@ -130,8 +130,8 @@ class KidsControllerTest < ActionController::TestCase
     assert_response :success
 
     # Checks Activity for the proper parameters
-    activity = Activity.last
-    check_activities(activity, ["first_name"], ["last_name", "cupdated_at"])
+    activity = Activity.first
+    check_activities(activity, ["first_name"], ["last_name", "updated_at"])
     assert_equal "updated", activity.action
     assert_equal @kid, activity.trackable
   end
@@ -157,7 +157,7 @@ class KidsControllerTest < ActionController::TestCase
     end
     assert_response :success
 
-    activity = Activity.last
+    activity = Activity.first
     assert_equal "deleted", activity.action
     assert_equal nil, activity.trackable
   end
