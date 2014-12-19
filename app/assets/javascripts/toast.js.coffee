@@ -22,8 +22,8 @@ Toast.toastMessage = (message) ->
 
 Toast.toastError = (message) ->
   if !showing
-    $('#toast').text(message)
     $('#toast').addClass 'error'
+    $('#toast').text(message)
     $('#toast').addClass 'active'
     showing = true
     setTimeout(timeout, 5000)
