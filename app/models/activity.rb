@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  default_scope { order(created_at: :desc) }
   belongs_to :owner, :polymorphic => true
   belongs_to :trackable, :polymorphic => true
 

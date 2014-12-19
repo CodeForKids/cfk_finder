@@ -6,7 +6,19 @@
 */
 
 @import "bootstrap-sprockets";
+@import "bootswatch/superhero/variables";
+
 @import "bootstrap";
+@import "bootstrap/mixins";
+
+body { padding-top: 60px; }
+
+@import "bootswatch/superhero/bootswatch";
+
+.form-horizontal .form-group {
+  margin-left: 0px;
+  margin-right: 0px;
+}
 
 .home-content {
   margin-top: -20px;
