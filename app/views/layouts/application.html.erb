@@ -20,7 +20,7 @@
 </head>
   <body>
     <%= render "layouts/navbar" %>
-    <div class="<%= params[:controller] == "home" ? "content" : "container" %>">
+    <div class="<%= params[:controller] == "home" ? "content" : "home-container container" %>">
       <%= yield %>
     </div>
     <%= render "layouts/error" %>

@@ -20,6 +20,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'devise-bootstrap-views'
 
 group :development, :test do
   gem 'ffaker', github: "emmanueloga/ffaker"
