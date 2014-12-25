@@ -6,4 +6,6 @@ json.address do
   json.city address.city
   json.province address.province
   json.country address.country
+  json.latitude address.latitude
+  json.longitude address.longitude
 end

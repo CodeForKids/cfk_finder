@@ -10,7 +10,7 @@ class HomeControllerTest < ActionController::TestCase
 
     get :index
     assert_equal @parent.address, assigns(:current_location)
-    assert assigns(:addresses).count > 1, "Did not have at least 1 address"
+    assert assigns(:events).count > 1, "Did not have at least 1 address"
     assert_equal "We detected your location to be Ottawa, please make sure this is correct.", flash[:notice]
   end
 
@@ -20,7 +20,7 @@ class HomeControllerTest < ActionController::TestCase
 
     get :index
     assert_equal @parent.address, assigns(:current_location)
-    assert assigns(:addresses).count > 1, "Did not have at least 1 address"
+    assert assigns(:events).count > 1, "Did not have at least 1 address"
     assert_equal "We detected your location automatically, please make sure it is correct.", flash[:notice]
     assert_equal @parent.user, User.current_user
   end
@@ -30,22 +30,22 @@ class HomeControllerTest < ActionController::TestCase
 
     get :index
     assert_not assigns(:current_location), "Had a current_location"
-    assert assigns(:addresses).count > 1, "Did not have at least 1 address"
+    assert assigns(:events).count > 1, "Did not have at least 1 address"
     assert_equal "We had an issue detecting your location, please find your location on the map.", flash[:error]
   end
 
   test "should get json_markers" do
-    get :json_markers
+    get :json_markers, format: :json
     assert_response 200
 
     markers = JSON.parse(response.body)
     assert markers.count > 1, "Response did not have more than one marker"
 
     marker = markers.first
-    assert_equal 123.0, marker["latitude"]
-    assert_equal 123.0, marker["longitude"]
-    assert_equal "john smith (Tutor)", marker["title"]
-    assert_equal "150 Elgin, Suite 600, K1N5T5, Ottawa, Ontario, Canada", marker["content"]
+    assert_equal 123.0, marker["address"]["latitude"]
+    assert_equal 123.0, marker["address"]["longitude"]
+    assert_equal "My Event", marker["name"]
+    assert_equal "MyText", marker["description"]
   end
 
   #################

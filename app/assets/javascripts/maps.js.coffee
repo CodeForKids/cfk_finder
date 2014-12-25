@@ -7,24 +7,26 @@ zoomLevel = 13
 root = exports ? this
 root.centerOnMarker = (id) ->
   marker = markers_hash[id]
-  map.setCenter(marker.position)
+  map.panTo(marker.position)
   map.setZoom(zoomLevel-5)
   google.maps.event.trigger( marker, 'click' );
 
-makeContentString = (contentString, marker) ->
+makeContentString = (contentString, url, marker) ->
   "<div id=\"content\">" +
+  "<a href=\"#{url}\">" +
   "<h1 id=\"firstHeading\" class=\"firstHeading\">#{marker.title}</h1>" +
   "<div id=\"bodyContent\">#{contentString}</div>" +
+  "</a>" +
   "</div>"
 
-createMarker = (myLatLng, title, contentString, id) ->
+createMarker = (myLatLng, title, url, contentString, id) ->
   marker = new google.maps.Marker(
     position: myLatLng
     map: map
     title: title
   )
   google.maps.event.addListener marker, "click", ->
-    html_string = makeContentString(contentString, marker)
+    html_string = makeContentString(contentString, url, marker)
     infoWindow.setContent html_string
     infoWindow.open map, marker
 
@@ -54,23 +56,25 @@ createSearchBox = () ->
 initialize = ->
   if(document.getElementById('map') != null)
     bounds = new google.maps.LatLngBounds()
+    user_latlong = new google.maps.LatLng($('#map').data("latitude"), $('#map').data("longitude"))
+
     mapOptions =
-      zoom: zoomLevel
+      zoom: zoomLevel,
+      center: user_latlong
 
     infoWindow = new google.maps.InfoWindow({})
     map = new google.maps.Map(document.getElementById("map"), mapOptions)
 
-    user_latlong = new google.maps.LatLng($('#map').data("latitude"), $('#map').data("longitude"))
+
 
     jQuery.getJSON("/json_markers.json", (json_markers) ->
       jQuery.each json_markers, (->
-        myLatLng = new google.maps.LatLng(this["latitude"], this["longitude"])
+        myLatLng = new google.maps.LatLng(this["address"]["latitude"], this["address"]["longitude"])
         bounds.extend(myLatLng)
-        createMarker(myLatLng, this["title"], this["content"], this["id"])
+        createMarker(myLatLng, "#{this["name"]} (#{this["price"]})", this["url"], this["description"], this["id"])
       )
     )
 
-    map.setCenter(user_latlong)
     createSearchBox()
 
 $(document).on('ready page:load', initialize);

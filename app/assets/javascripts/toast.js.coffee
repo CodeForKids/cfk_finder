@@ -5,7 +5,6 @@ showing = false
 Toast.processToast = () ->
   if toastQueue.length > 0
     toast = toastQueue.shift()
-    $("#toasts").find(':first-child').remove()
     if $(toast).data("toast-type") == "error"
       Toast.toastError $(toast).text()
     else

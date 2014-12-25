@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to @tutor, class: 'btn btn-default' do %>
+  <%= link_to [@owner, :events], class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <h1>Editing tutor</h1>
+  <h1>New event</h1>
 </div>
 
 <%= render 'form' %>

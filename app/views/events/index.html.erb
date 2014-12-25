@@ -1,0 +1,41 @@
+<div class="page-header">
+  <%= link_to [:new, @owner, :event], class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Event
+  <% end %>
+  <h1>Listing events</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Spots available</th>
+        <th>Type</th>
+        <th>Materials needed</th>
+        <th>Price</th>
+        <th>Tax rate</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @events) do |event| %>
+        <td><%= event.name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.spots_available %></td>
+        <td><%= event.event_type %></td>
+        <td><%= event.materials_needed %></td>
+        <td><%= humanized_money_with_symbol event.price %></td>
+        <td><%= number_to_percent event.tax_rate %></td>
+        <td><%= link_to 'Show', [@owner, event] %></td>
+        <td><%= link_to 'Edit', [:edit, @owner, event] %></td>
+        <td><%= link_to 'Destroy', [@owner, event], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

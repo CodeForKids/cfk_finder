@@ -17,7 +17,10 @@ class ApplicationController < ActionController::Base
   # Handles Format for Auth Methods
   def redirect_auth(url)
     respond_to do |format|
-      format.html { redirect_to url }
+      format.html do
+        flash[:error] = "You do not have permission to view or modify this resource."
+        redirect_to url
+      end
       format.json do
         head :unauthorized
       end

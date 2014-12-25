@@ -1,30 +1,30 @@
-<%= form_for(@tutor, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
+<%= form_for(@tutor, :html => { class: "form-horizontal", :role => "form" }) do |f| %>
   <%= render "general_forms/errors", object: @tutor %>
 
   <div class="form-group">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name, :class => "form-control" %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :last_name %>
-    <%= f.text_field :last_name, :class => "form-control" %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :date_of_birth %>
-    <%= f.text_field :date_of_birth, :class => "form-control datepicker" %>
+    <%= f.text_field :date_of_birth, class: "form-control datepicker" %>
   </div>
 
   <div class="form-group">
     <%= f.label :max_students %>
-    <%= f.number_field :max_students, :class => "form-control" %>
+    <%= f.number_field :max_students, class: "form-control" %>
   </div>
 
   <%= render "general_forms/address", f: f %>
   <%= render "general_forms/user", f: f %>
 
   <div class="form-group">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

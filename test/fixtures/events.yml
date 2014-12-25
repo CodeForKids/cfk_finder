@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+canada:
+  id: 1
+  name: My Event
+  description: MyText
+  spots_available: 3
+  materials_needed: MyText
+  price_cents: 999
+  price_currency: "CAD"
+  tax_rate: 9.99
+  owner_id: 1
+  owner_type: "Tutor"
+  address_id: 1
+
+japan:
+  id: 2
+  name: My Japanese Event
+  description: MyText
+  spots_available: 3
+  materials_needed: MyText
+  price_cents: 999
+  price_currency: "JPY"
+  tax_rate: 9.99
+  owner_id: 1
+  owner_type: "Tutor"

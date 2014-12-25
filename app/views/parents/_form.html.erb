@@ -1,20 +1,20 @@
-<%= form_for(@parent, :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
+<%= form_for(@parent, :html => { class: "form-horizontal", :role => "form" }) do |f| %>
   <%= render "general_forms/errors", object: @parent %>
 
   <div class="form-group">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name, :class => "form-control" %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :last_name %>
-    <%= f.text_field :last_name, :class => "form-control" %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
 
   <%= render "general_forms/address", f: f %>
   <%= render "general_forms/user", f: f %>
 
   <div class="form-group">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

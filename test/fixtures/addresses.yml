@@ -1,4 +1,5 @@
 one:
+  id: 1
   address1: 150 Elgin
   address2: Suite 600
   city: Ottawa
@@ -11,6 +12,7 @@ one:
   longitude: 123
 
 two:
+  id: 2
   address1: 150 Elgin
   address2: Suite 600
   city: Ottawa
@@ -23,6 +25,7 @@ two:
   longitude: 123
 
 three:
+  id: 3
   address1: 150 Elgin
   address2: Suite 600
   city: Ottawa
@@ -35,6 +38,7 @@ three:
   longitude: 123
 
 four:
+  id: 4
   address1: 150 Elgin
   address2: Suite 600
   city: Ottawa
@@ -43,5 +47,31 @@ four:
   postal_code: K1N5T5
   owner_id: 2
   owner_type: "Tutor"
+  latitude: 123
+  longitude: 123
+
+five:
+  id: 5
+  address1: 150 Elgin
+  address2: Suite 600
+  city: Ottawa
+  province: Ontario
+  country: Canada
+  postal_code: K1N5T5
+  owner_id: 1
+  owner_type: "Event"
+  latitude: 123
+  longitude: 123
+
+six:
+  id: 6
+  address1: 150 Elgin
+  address2: Suite 600
+  city: Ottawa
+  province: Ontario
+  country: Canada
+  postal_code: K1N5T5
+  owner_id: 2
+  owner_type: "Event"
   latitude: 123
   longitude: 123

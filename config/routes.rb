@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :tutors, except: :index
+  resources :tutors, except: :index do
+    resources :events
+  end
 
   devise_for :users
 

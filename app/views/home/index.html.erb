@@ -1,20 +1,24 @@
 <div class="home-content">
   <div class="col-md-4 no-padding">
     <div class="scrollview">
-      <% @addresses.each do |address| %>
+      <% @events.each do |event| %>
         <div class="scrollview-item">
-          <a href="#" onclick="centerOnMarker(<%= address.id %>);"><%= address.full_street_address %></a>
+          <p><%= event.name %> | <%= humanized_money_with_symbol event.price %></p>
+          <p>
+            <a href="#" onclick="centerOnMarker(<%= event.id %>);">
+              <%= event.address.full_street_address %>
+            </a>
+          </p>
         </div>
       <% end %>
     </div>
   </div>
 
-  <div class="col-md-8 no-padding">
-    <div class="map-wrapper">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-      <div id="map"
-           data-latitude="<%= @current_location.try(:latitude) %>"
-           data-longitude="<%= @current_location.try(:longitude) %>"></div>
-     </div>
+  <div class="col-md-8 no-padding map-wrapper">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"
+         data-latitude="<%= @current_location.try(:latitude) %>"
+         data-longitude="<%= @current_location.try(:longitude) %>"></div>
+    </div>
   </div>
 </div>

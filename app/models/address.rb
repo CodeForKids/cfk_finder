@@ -1,5 +1,5 @@
 class Address < BaseModel
-  belongs_to :owner, :polymorphic => true
+  belongs_to :owner, polymorphic: true
 
   geocoded_by :full_street_address
   after_validation :geocode

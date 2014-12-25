@@ -1,35 +1,35 @@
-<%= form_for([@parent, @kid], :html => { :class => "form-horizontal", :role => "form" }) do |f| %>
+<%= form_for([@parent, @kid], :html => { class: "form-horizontal", :role => "form" }) do |f| %>
   <%= render "general_forms/errors", object: @kid %>
 
   <div class="form-group">
-    <%= f.label :first_name, :class => "col-sm-2 control-label" %>
+    <%= f.label :first_name, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :first_name, :class => "form-control" %>
+      <%= f.text_field :first_name, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :last_name, :class => "col-sm-2 control-label" %>
+    <%= f.label :last_name, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :last_name, :class => "form-control" %>
+      <%= f.text_field :last_name, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :gender, :class => "col-sm-2 control-label" %>
+    <%= f.label :gender, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :gender, :class => "form-control" %>
+      <%= f.text_field :gender, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :date_of_birth, :class => "col-sm-2 control-label" %>
+    <%= f.label :date_of_birth, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :date_of_birth, :class => "form-control datepicker" %>
+      <%= f.text_field :date_of_birth, class: "form-control datepicker" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

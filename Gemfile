@@ -9,6 +9,11 @@ gem 'date_validator'
 gem 'devise'
 gem 'geocoder'
 
+#Money
+gem 'money-rails'
+gem "money"
+gem "google_currency"
+
 #Assets
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'

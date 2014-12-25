@@ -1,0 +1,55 @@
+<%= form_for([@owner, @event], :html => { class: "form-horizontal", :role => "form" }) do |f| %>
+  <%= render "general_forms/errors", object: @event %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :spots_available %>
+    <%= f.number_field :spots_available, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :event_type %>
+    <%= f.text_field :event_type, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :materials_needed %>
+    <%= f.text_area :materials_needed, class: "form-control" %>
+  </div>
+
+  <hr>
+
+  <div class="form-group">
+    <%= f.label :price_cents, "Price" %>
+    <div class="input-group">
+      <span class="input-group-addon" id="price_symbol"><%= @event.currency.try(:symbol) || "$" %></span>
+      <%= f.number_field :price_cents, value: @event.price, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price_currency, "Currency" %>
+    <%= f.select :price_currency, options_for_select(Money::Currencies, "CAD"), {}, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tax_rate %>
+    <div class="input-group">
+      <span class="input-group-addon">%</span>
+      <%= f.text_field :tax_rate, value: format_tax_rate(@event.tax_rate), class: "form-control" %>
+    </div>
+  </div>
+
+  <hr>
+
+  <%= render "general_forms/address", f: f %>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

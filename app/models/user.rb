@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :trackable, :validatable
 
   has_many :activities, as: :owner
-  belongs_to :role, :polymorphic => true
+  belongs_to :role, :polymorphic => true, dependent: :destroy
   validates :role_type, inclusion: { in: Proc.new { User.roles } }
   before_validation(on: :update) do
     raise "You cannot change your role" if cannot_change_role?

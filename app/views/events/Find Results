@@ -1,0 +1,1351 @@
+Searching 1056 files for "BaseUser" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/base_user.rb:
+    1: class BaseUser < BaseModel
+    2    self.abstract_class = true
+    3
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/parent.rb:
+    1: class Parent < BaseUser
+    2    has_many :kids, foreign_key: :parent_id
+    3  end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/tutor.rb:
+    1: class Tutor < BaseUser
+    2
+    3  end
+
+3 matches across 3 files
+
+
+Searching 1056 files for "build" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/Gemfile:
+    4  gem 'mysql2'
+    5  gem 'turbolinks'
+    6: gem 'jbuilder', '~> 2.0'
+    7  gem 'sdoc', '~> 0.4.0', group: :doc
+    8  gem 'date_validator'
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/Gemfile.lock:
+   19      actionview (4.1.7)
+   20        activesupport (= 4.1.7)
+   21:       builder (~> 3.1)
+   22        erubis (~> 2.7.0)
+   23      activemodel (4.1.7)
+   24        activesupport (= 4.1.7)
+   25:       builder (~> 3.1)
+   26      activerecord (4.1.7)
+   27        activemodel (= 4.1.7)
+   ..
+   44      bootswatch-rails (3.2.4)
+   45        railties (>= 3.1)
+   46:     builder (3.2.2)
+   47      codeclimate-test-reporter (0.3.0)
+   48        simplecov (>= 0.7.1, < 1.0.0)
+   ..
+   70      hike (1.2.3)
+   71      i18n (0.6.11)
+   72:     jbuilder (2.2.4)
+   73        activesupport (>= 3.0.0, < 5)
+   74        multi_json (~> 1.2)
+   ..
+  165    ffaker!
+  166    geocoder
+  167:   jbuilder (~> 2.0)
+  168    jquery-rails
+  169    mocha
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/controllers/events_controller.rb:
+   18
+   19    def create
+   20:     @event = @owner.build_event(event_params)
+   21
+   22      respond_to do |format|
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/controllers/users_controller.rb:
+   22      # For TutorController, this becomes:
+   23      # @tutor = Tutor.new
+   24:     # @tutor.address = resource.build_address
+   25      instance_variable_set("@#{controller}", resource_constant.new)
+   26:     resource.address = resource.build_address
+   27    end
+   28
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/base_user.rb:
+   24
+   25    def address_attributes=(attributes)
+   26:     address = self.address || self.build_address
+   27      address.update(attributes)
+   28    end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/vendor/assets/javascripts/underscore.js:
+  129    var reduceError = 'Reduce of empty array with no initial value';
+  130
+  131:   // **Reduce** builds up a single result from a list of values, aka `inject`,
+  132    // or `foldl`.
+  133    _.reduce = _.foldl = _.inject = function(obj, iteratee, memo, context) {
+
+11 matches across 6 files
+
+
+Searching 1056 files for "event.type" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   30          <td><%= event.description %></td>
+   31          <td><%= event.spots_available %></td>
+   32:         <td><%= event.type %></td>
+   33          <td><%= event.materials_needed %></td>
+   34          <td><%= event.address %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+3 matches across 2 files
+
+
+Searching 1056 files for "type" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/Gemfile.lock:
+   78      json (1.8.1)
+   79      mail (2.6.3)
+   80:       mime-types (>= 1.16, < 3)
+   81      metaclass (0.0.4)
+   82      method_source (0.8.2)
+   83:     mime-types (2.4.3)
+   84      minitest (5.4.3)
+   85      mocha (1.1.0)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/assets/javascripts/confirmation.js.coffee:
+   17                <div class="modal-content">
+   18                  <div class="modal-header">
+   19:                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+   20                    <h4 class="modal-title">#{title}</h4>
+   21                  </div>
+   ..
+   24                  </div>
+   25                  <div class="modal-footer">
+   26:                   <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+   27                    <a data-dismiss="modal" class="btn btn-danger confirm">Yes, I am sure.</a>
+   28                  </div>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/assets/javascripts/toast.js.coffee:
+    7      toast = toastQueue.shift()
+    8      $("#toasts").find(':first-child').remove()
+    9:     if $(toast).data("toast-type") == "error"
+   10        Toast.toastError $(toast).text()
+   11      else
+   ..
+   19      setTimeout(timeout, 5000)
+   20    else
+   21:     toastQueue.push("<div data-toast-type='notice'>#{message}</div>")
+   22
+   23  Toast.toastError = (message) ->
+   ..
+   29      setTimeout(timeout, 5000)
+   30    else
+   31:     toastQueue.push("<div data-toast-type='error'>#{message}</div>")
+   32
+   33  timeout = () ->
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/assets/stylesheets/map.css.scss:
+   42  }
+   43
+   44: #type-selector {
+   45    color: #fff;
+   46    background-color: #4d90fe;
+   ..
+   48  }
+   49
+   50: #type-selector label {
+   51    font-family: Roboto;
+   52    font-size: 13px;
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/controllers/application_controller.rb:
+   39
+   40    def configure_permitted_parameters
+   41:     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:role_id, :role_type, :email, :password, :password_confirmation, :remember_me) }
+   42:     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :role_id, :role_type, :email, :password, :remember_me) }
+   43:     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:role_id, :role_type, :email, :password, :password_confirmation, :current_password) }
+   44    end
+   45
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/controllers/events_controller.rb:
+   63
+   64      def event_params
+   65:       params.require(:event).permit(:name, :description, :spots_available, :type, :materials_needed, :price, :tax_rate,
+   66                                      address_attributes: [:address1, :address2, :city, :province, :postal_code, :country])
+   67      end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/controllers/users_controller.rb:
+    3  # - This controller will automatically sandbox users to show, edit, update, and destroy.
+    4  # - This controller will allow the user to view new and use create if the user does not have a role_id set
+    5: # - This controller will work with any type of user given that the controller is "Role_Type"Controller.
+    6  # - The subclass controller needs to override resource_params with its own necessities. This is all it needs to do.
+    7
+    .
+   97    # current_user.tutor? && @resource == current_user.role
+   98    # This requires the user model to implement the role? method
+   99:   # This will essentially check that the user is of type "Role" and is the @resource
+  100    def allowed_view?
+  101      current_user.send("#{controller}?") && @resource == current_user.role
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/helpers/activities_helper.rb:
+    1  module ActivitiesHelper
+    2:   def key_word_for_activity(trackable_type, current_user)
+    3:     if ["User"].include?(trackable_type)
+    4        ""
+    5:     elsif current_user.role_type == trackable_type
+    6        "their profile"
+    7      else
+    8:       indefinite_articlerize(trackable_type)
+    9      end
+   10    end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/user.rb:
+    5    has_many :activities, as: :owner
+    6    belongs_to :role, :polymorphic => true, dependent: :destroy
+    7:   validates :role_type, inclusion: { in: Proc.new { User.roles } }
+    8    before_validation(on: :update) do
+    9      raise "You cannot change your role" if cannot_change_role?
+   ..
+   20    User.roles.each do |role|
+   21      define_method("#{role.parameterize.downcase}?") do
+   22:       role_type == role
+   23      end
+   24    end
+   ..
+   62
+   63    def cannot_change_role?
+   64:     role_id_was && (role_type_changed? || role_id_changed?)
+   65    end
+   66  end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/activities/_activity.html.erb:
+    6      <h4 class="media-heading">
+    7        <%= activity.owner.name %> <%= activity.action %>
+    8:       <%= link_to_if activity.has_url?, key_word_for_activity(activity.trackable_type, current_user), activity.trackable.try(:url) %>
+    9        <small><%= distance_of_time_in_words_to_now(activity.created_at) %> ago from <%= activity.ip_address %></small>
+   10      </h4>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/devise/registrations/new.html.erb:
+   19        </div>
+   20        <div class="form-group">
+   21:         <%= f.label :role_type, "I am a..." %>
+   22:         <%= f.select :role_type, options_for_select(User.roles), { allow_blank: true }, class: "form-control" %>
+   23        </div>
+   24        <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/_form.html.erb:
+   15    </div>
+   16    <div class="form-group">
+   17:     <%= f.label :event_type %>
+   18:     <%= f.text_field :event_type, :class => "form-control" %>
+   19    </div>
+   20    <div class="form-group">
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   30          <td><%= event.description %></td>
+   31          <td><%= event.spots_available %></td>
+   32:         <td><%= event.event_type %></td>
+   33          <td><%= event.materials_needed %></td>
+   34          <td><%= event.address %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.json.jbuilder:
+    1  json.array!(@events) do |event|
+    2:   json.extract! event, :id, :name, :description, :spots_available, :type, :materials_needed, :price, :tax_rate
+    3    json.partial! 'addresses/address', address: @event.address
+    4    json.extract! event, :created_at, :updated_at
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   19    <dd><%= @event.spots_available %></dd>
+   20    <dt>Type:</dt>
+   21:   <dd><%= @event.event_type %></dd>
+   22    <dt>Materials needed:</dt>
+   23    <dd><%= @event.materials_needed %></dd>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/general_forms/_errors.html.erb:
+    1  <% if object.errors.any? %>
+    2    <div class="alert alert-danger alert-dismissable" role="alert">
+    3:     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    4      <h4><%= pluralize(object.errors.count, "error") %> prohibited this <%= object.class.name.singularize %> from being saved:</h4>
+    5      <ul>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/home/index.html.erb:
+   12    <div class="col-md-8 no-padding">
+   13      <div class="map-wrapper">
+   14:       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+   15        <div id="map"
+   16             data-latitude="<%= @current_location.try(:latitude) %>"
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/layouts/_error.html.erb:
+    4      <% flash.each do |key, message| %>
+    5        <% message.split("\n").each do |submessage| %>
+    6:         <li data-toast-type="<%= key %>"><%= html_escape submessage %></li>
+    7        <% end %>
+    8      <% end %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/layouts/_navbar.html.erb:
+    2    <div class="content">
+    3      <div class="navbar-header">
+    4:       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    5          <span class="sr-only">Toggle navigation</span>
+    6          <span class="icon-bar"></span>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/layouts/application.html.erb:
+   14    <![endif]-->
+   15
+   16:   <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&sensor=false"></script>
+   17    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+   18    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/config/initializers/mime_types.rb:
+    1  # Be sure to restart your server when you modify this file.
+    2
+    3: # Add new mime types for use in respond_to blocks:
+    4  # Mime::Type.register "text/richtext", :rtf
+    5
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/db/schema.rb:
+   16    create_table "activities", force: true do |t|
+   17      t.integer  "trackable_id"
+   18:     t.string   "trackable_type"
+   19      t.integer  "owner_id"
+   20:     t.string   "owner_type"
+   21      t.string   "action"
+   22      t.string   "ip_address"
+   ..
+   26    end
+   27
+   28:   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+   29:   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+   30
+   31    create_table "addresses", force: true do |t|
+   ..
+   39      t.float    "longitude",   limit: 24
+   40      t.integer  "owner_id"
+   41:     t.string   "owner_type"
+   42      t.datetime "created_at"
+   43      t.datetime "updated_at"
+   ..
+   48      t.text     "description"
+   49      t.integer  "spots_available",                           default: 3
+   50:     t.string   "event_type"
+   51      t.text     "materials_needed"
+   52      t.integer  "address_id"
+   ..
+   55      t.integer  "subject_id"
+   56      t.integer  "owner_id"
+   57:     t.string   "owner_type"
+   58      t.datetime "created_at"
+   59      t.datetime "updated_at"
+   ..
+  108      t.string   "last_sign_in_ip"
+  109      t.integer  "role_id"
+  110:     t.string   "role_type"
+  111      t.datetime "created_at"
+  112      t.datetime "updated_at"
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/db/seeds.rb:
+   14                           password: "12345678",
+   15                           password_confirmation: "12345678",
+   16:                          role_type: "Parent",
+   17                           role_id: parent.id })
+   18
+   ..
+   48                           password: "12345678",
+   49                           password_confirmation: "12345678",
+   50:                          role_type: "Tutor",
+   51                           role_id: tutor.id })
+   52
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/db/migrate/20141225183900_create_events.rb:
+    5        t.text :description
+    6        t.integer :spots_available, default: 3
+    7:       t.string :event_type
+    8        t.text :materials_needed
+    9        t.references :address, index: true
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/documentation/database.xml:
+    3  <!-- Active URL: http://ondras.zarovi.cz/sql/demo/ -->
+    4  <sql>
+    5: <datatypes db="mysql">
+    6    <group label="Numeric" color="rgb(238,238,170)">
+    7:     <type label="Integer" length="0" sql="INTEGER" quote=""/>
+    8:     <type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+    9:     <type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+   10:     <type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+   11:     <type label="INT" length="0" sql="INT" quote=""/>
+   12:     <type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+   13:     <type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+   14:     <type label="Single precision" length="0" sql="FLOAT" quote=""/>
+   15:     <type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+   16    </group>
+   17
+   18    <group label="Character" color="rgb(255,200,200)">
+   19:     <type label="Char" length="1" sql="CHAR" quote="'"/>
+   20:     <type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+   21:     <type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+   22:     <type label="Binary" length="1" sql="BINARY" quote="'"/>
+   23:     <type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+   24:     <type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+   25    </group>
+   26
+   27    <group label="Date &amp; Time" color="rgb(200,255,200)">
+   28:     <type label="Date" length="0" sql="DATE" quote="'"/>
+   29:     <type label="Time" length="0" sql="TIME" quote="'"/>
+   30:     <type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+   31:     <type label="Year" length="0" sql="YEAR" quote=""/>
+   32:     <type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+   33    </group>
+   34
+   35    <group label="Miscellaneous" color="rgb(200,200,255)">
+   36:     <type label="ENUM" length="1" sql="ENUM" quote=""/>
+   37:     <type label="SET" length="1" sql="SET" quote=""/>
+   38:     <type label="Bit" length="0" sql="bit" quote=""/>
+   39    </group>
+   40: </datatypes><table x="467" y="400" name="tutors">
+   41  <row name="id" null="1" autoincrement="1">
+   42: <datatype>INTEGER</datatype>
+   43  <default>NULL</default><relation table="bookings" row="tutor_id" />
+   44  <relation table="reviews" row="tutor_id" />
+   ..
+   46  </row>
+   47  <row name="address_id" null="1" autoincrement="1">
+   48: <datatype>INTEGER</datatype>
+   49  </row>
+   50  <row name="first_name" null="0" autoincrement="0">
+   51: <datatype>VARCHAR(255)</datatype>
+   52  </row>
+   53  <row name="last_name" null="0" autoincrement="0">
+   54: <datatype>VARCHAR(255)</datatype>
+   55  </row>
+   56  <row name="email" null="0" autoincrement="0">
+   57: <datatype>VARCHAR(255)</datatype>
+   58  </row>
+   59  <row name="date_of_birth" null="0" autoincrement="0">
+   60: <datatype>DATETIME</datatype>
+   61  </row>
+   62  <row name="police_check_url" null="1" autoincrement="0">
+   63: <datatype>VARCHAR(255)</datatype>
+   64  <default>'""'</default></row>
+   65  <row name="max_students" null="1" autoincrement="0">
+   66: <datatype>INTEGER</datatype>
+   67  <default>3</default></row>
+   68: <key type="PRIMARY" name="">
+   69  <part>id</part>
+   70  <part>address_id</part>
+   ..
+   73  <table x="863" y="410" name="parents">
+   74  <row name="id" null="1" autoincrement="1">
+   75: <datatype>INTEGER</datatype>
+   76  <default>NULL</default><relation table="children" row="parent_id" />
+   77  <relation table="bookings" row="parent_id" />
+   ..
+   80  </row>
+   81  <row name="address_id" null="1" autoincrement="0">
+   82: <datatype>INTEGER</datatype>
+   83  <default>NULL</default></row>
+   84  <row name="first_name" null="1" autoincrement="0">
+   85: <datatype>VARCHAR(255)</datatype>
+   86  <default>NULL</default></row>
+   87  <row name="last_name" null="1" autoincrement="0">
+   88: <datatype>VARCHAR(255)</datatype>
+   89  <default>NULL</default></row>
+   90  <row name="email" null="1" autoincrement="0">
+   91: <datatype>VARCHAR(255)</datatype>
+   92  <default>NULL</default></row>
+   93  <row name="stripe_id" null="1" autoincrement="0">
+   94: <datatype>INTEGER</datatype>
+   95  <default>NULL</default></row>
+   96: <key type="PRIMARY" name="">
+   97  <part>id</part>
+   98  <part>address_id</part>
+   ..
+  101  <table x="1129" y="234" name="admins">
+  102  <row name="id" null="1" autoincrement="1">
+  103: <datatype>INTEGER</datatype>
+  104  <default>NULL</default></row>
+  105  <row name="first_name" null="1" autoincrement="0">
+  106: <datatype>VARCHAR(255)</datatype>
+  107  <default>NULL</default></row>
+  108  <row name="last_name" null="1" autoincrement="0">
+  109: <datatype>VARCHAR(255)</datatype>
+  110  <default>NULL</default></row>
+  111  <row name="email" null="1" autoincrement="0">
+  112: <datatype>VARCHAR(255)</datatype>
+  113  <default>NULL</default></row>
+  114: <key type="PRIMARY" name="">
+  115  <part>id</part>
+  116  </key>
+  ...
+  118  <table x="1108" y="396" name="events">
+  119  <row name="id" null="1" autoincrement="1">
+  120: <datatype>INTEGER</datatype>
+  121  <default>NULL</default><relation table="bookings" row="event_id" />
+  122  <relation table="dates" row="event_id" />
+  ...
+  125  </row>
+  126  <row name="address_id" null="1" autoincrement="0">
+  127: <datatype>INTEGER</datatype>
+  128  <default>NULL</default></row>
+  129  <row name="name" null="1" autoincrement="0">
+  130: <datatype>VARCHAR(255)</datatype>
+  131  <default>NULL</default></row>
+  132  <row name="description" null="1" autoincrement="0">
+  133: <datatype>MEDIUMTEXT</datatype>
+  134  <default>NULL</default></row>
+  135  <row name="spots_available" null="1" autoincrement="0">
+  136: <datatype>INTEGER</datatype>
+  137  <default>3</default></row>
+  138: <row name="type" null="1" autoincrement="0">
+  139: <datatype>VARCHAR(255)</datatype>
+  140  <default>NULL</default></row>
+  141  <row name="subject_id" null="1" autoincrement="0">
+  142: <datatype>INTEGER</datatype>
+  143  <default>NULL</default></row>
+  144  <row name="materials_needed" null="1" autoincrement="0">
+  145: <datatype>MEDIUMTEXT</datatype>
+  146  <default>NULL</default></row>
+  147  <row name="price" null="1" autoincrement="0">
+  148: <datatype>DECIMAL((10,2))</datatype>
+  149  <default>NULL</default></row>
+  150  <row name="tax_rate" null="1" autoincrement="0">
+  151: <datatype>DECIMAL((10,3))</datatype>
+  152  <default>NULL</default></row>
+  153: <key type="PRIMARY" name="">
+  154  <part>id</part>
+  155  <part>address_id</part>
+  ...
+  159  <table x="468" y="200" name="reviews">
+  160  <row name="id" null="1" autoincrement="1">
+  161: <datatype>INTEGER</datatype>
+  162  <default>NULL</default></row>
+  163  <row name="tutor_id" null="1" autoincrement="0">
+  164: <datatype>INTEGER</datatype>
+  165  <default>NULL</default></row>
+  166  <row name="parent_id" null="1" autoincrement="0">
+  167: <datatype>INTEGER</datatype>
+  168  <default>NULL</default></row>
+  169: <row name="type" null="1" autoincrement="0">
+  170: <datatype>VARCHAR(255)</datatype>
+  171  <default>NULL</default></row>
+  172  <row name="description" null="1" autoincrement="0">
+  173: <datatype>MEDIUMTEXT</datatype>
+  174  <default>NULL</default></row>
+  175  <row name="rating" null="1" autoincrement="0">
+  176: <datatype>DECIMAL((10,2))</datatype>
+  177  <default>NULL</default></row>
+  178: <key type="PRIMARY" name="">
+  179  <part>id</part>
+  180  <part>tutor_id</part>
+  ...
+  184  <table x="464" y="635" name="children">
+  185  <row name="id" null="1" autoincrement="1">
+  186: <datatype>INTEGER</datatype>
+  187  <default>NULL</default><relation table="bookings" row="child_id" />
+  188  </row>
+  189  <row name="parent_id" null="1" autoincrement="0">
+  190: <datatype>INTEGER</datatype>
+  191  <default>NULL</default></row>
+  192  <row name="first_name" null="1" autoincrement="0">
+  193: <datatype>VARCHAR(255)</datatype>
+  194  <default>NULL</default></row>
+  195  <row name="last_name" null="1" autoincrement="0">
+  196: <datatype>VARCHAR(255)</datatype>
+  197  <default>NULL</default></row>
+  198  <row name="gender" null="1" autoincrement="0">
+  199: <datatype>VARCHAR(255)</datatype>
+  200  <default>NULL</default></row>
+  201: <key type="PRIMARY" name="">
+  202  <part>id</part>
+  203  <part>parent_id</part>
+  ...
+  206  <table x="864" y="187" name="bookings">
+  207  <row name="id" null="1" autoincrement="1">
+  208: <datatype>INTEGER</datatype>
+  209  <default>NULL</default></row>
+  210  <row name="tutor_id" null="1" autoincrement="0">
+  211: <datatype>INTEGER</datatype>
+  212  <default>NULL</default></row>
+  213  <row name="child_id" null="1" autoincrement="0">
+  214: <datatype>INTEGER</datatype>
+  215  <default>NULL</default></row>
+  216  <row name="event_id" null="1" autoincrement="0">
+  217: <datatype>INTEGER</datatype>
+  218  <default>NULL</default></row>
+  219  <row name="parent_id" null="1" autoincrement="0">
+  220: <datatype>INTEGER</datatype>
+  221  <default>NULL</default></row>
+  222: <key type="PRIMARY" name="">
+  223  <part>id</part>
+  224  <part>parent_id</part>
+  ...
+  230  <table x="1368" y="502" name="subjects">
+  231  <row name="id" null="1" autoincrement="1">
+  232: <datatype>INTEGER</datatype>
+  233  <default>NULL</default><relation table="events" row="subject_id" />
+  234  </row>
+  235  <row name="subject" null="1" autoincrement="0">
+  236: <datatype>VARCHAR(255)</datatype>
+  237  <default>NULL</default></row>
+  238  <row name="description" null="1" autoincrement="0">
+  239: <datatype>MEDIUMTEXT</datatype>
+  240  <default>NULL</default></row>
+  241: <key type="PRIMARY" name="">
+  242  <part>id</part>
+  243  </key>
+  ...
+  245  <table x="1369" y="335" name="dates">
+  246  <row name="id" null="1" autoincrement="1">
+  247: <datatype>INTEGER</datatype>
+  248  <default>NULL</default></row>
+  249  <row name="start_time" null="1" autoincrement="0">
+  250: <datatype>DATETIME</datatype>
+  251  <default>NULL</default></row>
+  252  <row name="end_time" null="1" autoincrement="0">
+  253: <datatype>DATETIME</datatype>
+  254  <default>NULL</default></row>
+  255  <row name="event_id" null="1" autoincrement="0">
+  256: <datatype>INTEGER</datatype>
+  257  <default>NULL</default></row>
+  258: <key type="PRIMARY" name="">
+  259  <part>id</part>
+  260  <part>event_id</part>
+  ...
+  263  <table x="1365" y="222" name="images">
+  264  <row name="id" null="1" autoincrement="1">
+  265: <datatype>INTEGER</datatype>
+  266  <default>NULL</default></row>
+  267  <row name="url" null="1" autoincrement="0">
+  268: <datatype>VARCHAR(255)</datatype>
+  269  <default>NULL</default></row>
+  270  <row name="event_id" null="1" autoincrement="0">
+  271: <datatype>INTEGER</datatype>
+  272  <default>NULL</default></row>
+  273: <key type="PRIMARY" name="">
+  274  <part>id</part>
+  275  <part>event_id</part>
+  ...
+  278  <table x="773" y="660" name="addresses">
+  279  <row name="id" null="1" autoincrement="1">
+  280: <datatype>INTEGER</datatype>
+  281  <default>NULL</default><relation table="tutors" row="address_id" />
+  282  <relation table="parents" row="address_id" />
+  ...
+  284  </row>
+  285  <row name="address1" null="1" autoincrement="0">
+  286: <datatype>VARCHAR(255)</datatype>
+  287  <default>NULL</default></row>
+  288  <row name="address2" null="1" autoincrement="0">
+  289: <datatype>VARCHAR(255)</datatype>
+  290  <default>NULL</default></row>
+  291  <row name="city" null="1" autoincrement="0">
+  292: <datatype>VARCHAR(255)</datatype>
+  293  <default>NULL</default></row>
+  294  <row name="province" null="1" autoincrement="0">
+  295: <datatype>VARCHAR(255)</datatype>
+  296  <default>NULL</default></row>
+  297  <row name="country" null="1" autoincrement="0">
+  298: <datatype>VARCHAR(255)</datatype>
+  299  <default>NULL</default></row>
+  300  <row name="postal_code" null="1" autoincrement="0">
+  301: <datatype>VARCHAR(255)</datatype>
+  302  <default>NULL</default></row>
+  303  <row name="latitude" null="1" autoincrement="0">
+  304: <datatype>VARCHAR(255)</datatype>
+  305  <default>NULL</default></row>
+  306  <row name="longitude" null="1" autoincrement="0">
+  307: <datatype>VARCHAR(255)</datatype>
+  308  <default>NULL</default></row>
+  309: <key type="PRIMARY" name="">
+  310  <part>id</part>
+  311  </key>
+  ...
+  313  <table x="1108" y="662" name="transactions">
+  314  <row name="id" null="1" autoincrement="1">
+  315: <datatype>INTEGER</datatype>
+  316  <default>NULL</default></row>
+  317  <row name="event_id" null="1" autoincrement="0">
+  318: <datatype>INTEGER</datatype>
+  319  <default>NULL</default></row>
+  320  <row name="parent_id" null="1" autoincrement="0">
+  321: <datatype>INTEGER</datatype>
+  322  <default>NULL</default></row>
+  323  <row name="tutor_id" null="1" autoincrement="0">
+  324: <datatype>INTEGER</datatype>
+  325  <default>NULL</default></row>
+  326  <row name="price" null="1" autoincrement="0">
+  327: <datatype>DECIMAL((10,2))</datatype>
+  328  <default>NULL</default></row>
+  329  <row name="tax" null="1" autoincrement="0">
+  330: <datatype>DECIMAL((10,2))</datatype>
+  331  <default>NULL</default></row>
+  332  <row name="stripe_id" null="1" autoincrement="0">
+  333: <datatype>INTEGER</datatype>
+  334  <default>NULL</default></row>
+  335: <key type="PRIMARY" name="">
+  336  <part>id</part>
+  337  <part>event_id</part>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/lib/templates/erb/scaffold/_form.html.erb:
+    6        <%%= f.label :<%= attribute.name %>, :class => "col-sm-2 control-label" %>
+    7        <div class="col-sm-10">
+    8:         <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => "form-control" %>
+    9        </div>
+   10      </div>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/public/404.html:
+   60      <div>
+   61        <h1>The page you were looking for doesn't exist.</h1>
+   62:       <p>You may have mistyped the address or the page may have moved.</p>
+   63      </div>
+   64      <p>If you are the application owner check the logs for more information.</p>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/fixtures/addresses.yml:
+    7    postal_code: K1N5T5
+    8    owner_id: 1
+    9:   owner_type: "Parent"
+   10    latitude: 123
+   11    longitude: 123
+   ..
+   19    postal_code: K1N5T5
+   20    owner_id: 2
+   21:   owner_type: "Parent"
+   22    latitude: 123
+   23    longitude: 123
+   ..
+   31    postal_code: K1N5T5
+   32    owner_id: 1
+   33:   owner_type: "Tutor"
+   34    latitude: 123
+   35    longitude: 123
+   ..
+   43    postal_code: K1N5T5
+   44    owner_id: 2
+   45:   owner_type: "Tutor"
+   46    latitude: 123
+   47    longitude: 123
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/fixtures/events.yml:
+    5    description: MyText
+    6    spots_available: 1
+    7:   type:
+    8    materials_needed: MyText
+    9    address_id:
+   ..
+   15    description: MyText
+   16    spots_available: 1
+   17:   type:
+   18    materials_needed: MyText
+   19    address_id:
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/fixtures/users.yml:
+    6    email: "julian@example.com"
+    7    role_id: 1
+    8:   role_type: "Parent"
+    9    authentication_token: "12345"
+   10
+   ..
+   13    email: "josh@example.com"
+   14    role_id: 2
+   15:   role_type: "Parent"
+   16    authentication_token: "12346"
+   17
+   ..
+   19    <<: *defaults
+   20    email: "john@example.com"
+   21:   role_type: "Parent"
+   22    authentication_token: "12347"
+   23
+   ..
+   26    email: "tutor@example.com"
+   27    role_id: 1
+   28:   role_type: "Tutor"
+   29    authentication_token: "12348"
+   30
+   ..
+   33    email: "tutor2@example.com"
+   34    role_id: 2
+   35:   role_type: "Tutor"
+   36    authentication_token: "12349"
+   37
+   ..
+   39    <<: *defaults
+   40    email: "john_tutor@example.com"
+   41:   role_type: "Tutor"
+   42    authentication_token: "12340"
+   43
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/helpers/activities_helper_test.rb:
+    7
+    8    test "key_word_for_activity" do
+    9:     assert_equal "their profile", key_word_for_activity(@user.role_type, @user)
+   10      assert_equal "a Kid", key_word_for_activity("Kid", @user)
+   11      assert_equal "an Apple", key_word_for_activity("Apple", @user)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/models/user_test.rb:
+    8    test "should not allow changes to role" do
+    9      error = assert_raises RuntimeError do
+   10:       @user.role_type = "Tutor"
+   11        @user.save
+   12      end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/vendor/assets/javascripts/underscore.js:
+   16
+   17    // Save bytes in the minified (but not gzipped) version:
+   18:   var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+   19
+   20:   // Create quick reference variables for speed access to core prototypes.
+   21    var
+   22      push             = ArrayProto.push,
+   ..
+   43    // backwards-compatibility for the old `require()` API. If we're in
+   44    // the browser, add `_` as a global object.
+   45:   if (typeof exports !== 'undefined') {
+   46:     if (typeof module !== 'undefined' && module.exports) {
+   47        exports = module.exports = _;
+   48      }
+   ..
+  594      var i = 0, length = array.length;
+  595      if (isSorted) {
+  596:       if (typeof isSorted == 'number') {
+  597          i = isSorted < 0 ? Math.max(0, length + isSorted) : isSorted;
+  598        } else {
+  ...
+  608      if (array == null) return -1;
+  609      var idx = array.length;
+  610:     if (typeof from == 'number') {
+  611        idx = from < 0 ? idx + from + 1 : Math.min(idx, from + 1);
+  612      }
+  ...
+  638    // ------------------
+  639
+  640:   // Reusable constructor function for prototype setting.
+  641    var Ctor = function(){};
+  642
+  ...
+  651      bound = function() {
+  652        if (!(this instanceof bound)) return func.apply(context, args.concat(slice.call(arguments)));
+  653:       Ctor.prototype = func.prototype;
+  654        var self = new Ctor;
+  655:       Ctor.prototype = null;
+  656        var result = func.apply(self, args.concat(slice.call(arguments)));
+  657        if (_.isObject(result)) return result;
+  ...
+ 1005          return +a === +b;
+ 1006      }
+ 1007:     if (typeof a != 'object' || typeof b != 'object') return false;
+ 1008      // Assume equality for cyclic structures. The algorithm for detecting cyclic
+ 1009      // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+ ....
+ 1088    // Is a given variable an object?
+ 1089    _.isObject = function(obj) {
+ 1090:     var type = typeof obj;
+ 1091:     return type === 'function' || type === 'object' && !!obj;
+ 1092    };
+ 1093
+ ....
+ 1100
+ 1101    // Define a fallback version of the method in browsers (ahem, IE), where
+ 1102:   // there isn't any inspectable "Arguments" type.
+ 1103    if (!_.isArguments(arguments)) {
+ 1104      _.isArguments = function(obj) {
+ ....
+ 1108
+ 1109    // Optimize `isFunction` if appropriate. Work around an IE 11 bug.
+ 1110:   if (typeof /./ !== 'function') {
+ 1111      _.isFunction = function(obj) {
+ 1112:       return typeof obj == 'function' || false;
+ 1113      };
+ 1114    }
+ ....
+ 1140
+ 1141    // Shortcut function for checking if an object has a given property directly
+ 1142:   // on itself (in other words, not on a prototype).
+ 1143    _.has = function(obj, key) {
+ 1144      return obj != null && hasOwnProperty.call(obj, key);
+ ....
+ 1323      if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
+ 1324
+ 1325:     source = "var __t,__p='',__j=Array.prototype.join," +
+ 1326        "print=function(){__p+=__j.call(arguments,'');};\n" +
+ 1327        source + 'return __p;\n';
+ ....
+ 1367      _.each(_.functions(obj), function(name) {
+ 1368        var func = _[name] = obj[name];
+ 1369:       _.prototype[name] = function() {
+ 1370          var args = [this._wrapped];
+ 1371          push.apply(args, arguments);
+ ....
+ 1381    _.each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
+ 1382      var method = ArrayProto[name];
+ 1383:     _.prototype[name] = function() {
+ 1384        var obj = this._wrapped;
+ 1385        method.apply(obj, arguments);
+ ....
+ 1392    _.each(['concat', 'join', 'slice'], function(name) {
+ 1393      var method = ArrayProto[name];
+ 1394:     _.prototype[name] = function() {
+ 1395        return result.call(this, method.apply(this._wrapped, arguments));
+ 1396      };
+ ....
+ 1398
+ 1399    // Extracts the result from a wrapped and chained object.
+ 1400:   _.prototype.value = function() {
+ 1401      return this._wrapped;
+ 1402    };
+ ....
+ 1409    // an AMD load request. Those cases could generate an error when an
+ 1410    // anonymous define() is called outside of a loader request.
+ 1411:   if (typeof define === 'function' && define.amd) {
+ 1412      define('underscore', [], function() {
+ 1413        return _;
+
+277 matches across 34 files
+
+
+Searching 1056 files for ":type" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/controllers/events_controller.rb:
+   63
+   64      def event_params
+   65:       params.require(:event).permit(:name, :description, :spots_available, :type, :materials_needed, :price, :tax_rate,
+   66                                      address_attributes: [:address1, :address2, :city, :province, :postal_code, :country])
+   67      end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.json.jbuilder:
+    1  json.array!(@events) do |event|
+    2:   json.extract! event, :id, :name, :description, :spots_available, :type, :materials_needed, :price, :tax_rate
+    3    json.partial! 'addresses/address', address: @event.address
+    4    json.extract! event, :created_at, :updated_at
+
+2 matches across 2 files
+
+
+Searching 1056 files for ":type" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.json.jbuilder:
+    1  json.array!(@events) do |event|
+    2:   json.extract! event, :id, :name, :description, :spots_available, :type, :materials_needed, :price, :tax_rate
+    3    json.partial! 'addresses/address', address: @event.address
+    4    json.extract! event, :created_at, :updated_at
+
+1 match in 1 file
+
+
+Searching 1057 files for "select" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/assets/stylesheets/map.css.scss:
+   42  }
+   43
+   44: #type-selector {
+   45    color: #fff;
+   46    background-color: #4d90fe;
+   ..
+   48  }
+   49
+   50: #type-selector label {
+   51    font-family: Roboto;
+   52    font-size: 13px;
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/devise/registrations/new.html.erb:
+   20        <div class="form-group">
+   21          <%= f.label :role_type, "I am a..." %>
+   22:         <%= f.select :role_type, options_for_select(User.roles), { allow_blank: true }, class: "form-control" %>
+   23        </div>
+   24        <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/_form.html.erb:
+   25      <%= f.label :price %>
+   26      <%= f.number_field :price_cents, data: { role: 'money', a_sep: '.', a_dec: ',' }, :class => "form-control" %>
+   27:     <%= f.select_field :price_currency, , :class => "form-control" %>
+   28    </div>
+   29    <div class="form-group">
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/vendor/assets/javascripts/underscore.js:
+  180
+  181    // Return all the elements that pass a truth test.
+  182:   // Aliased as `select`.
+  183:   _.filter = _.select = function(obj, predicate, context) {
+  184      var results = [];
+  185      if (obj == null) return results;
+  ...
+  248    };
+  249
+  250:   // Convenience version of a common use case of `filter`: selecting only objects
+  251    // containing specific `key:value` pairs.
+  252    _.where = function(obj, attrs) {
+
+8 matches across 4 files
+
+
+Searching 1057 files for "select" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/assets/stylesheets/map.css.scss:
+   42  }
+   43
+   44: #type-selector {
+   45    color: #fff;
+   46    background-color: #4d90fe;
+   ..
+   48  }
+   49
+   50: #type-selector label {
+   51    font-family: Roboto;
+   52    font-size: 13px;
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/devise/registrations/new.html.erb:
+   20        <div class="form-group">
+   21          <%= f.label :role_type, "I am a..." %>
+   22:         <%= f.select :role_type, options_for_select(User.roles), { allow_blank: true }, class: "form-control" %>
+   23        </div>
+   24        <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/_form.html.erb:
+   25      <%= f.label :price %>
+   26      <%= f.number_field :price_cents, data: { role: 'money', a_sep: '.', a_dec: ',' }, :class => "form-control" %>
+   27:     <%= f.select_field :price_currency, options_for_select(Money::Currency), :class => "form-control" %>
+   28    </div>
+   29    <div class="form-group">
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/vendor/assets/javascripts/underscore.js:
+  180
+  181    // Return all the elements that pass a truth test.
+  182:   // Aliased as `select`.
+  183:   _.filter = _.select = function(obj, predicate, context) {
+  184      var results = [];
+  185      if (obj == null) return results;
+  ...
+  248    };
+  249
+  250:   // Convenience version of a common use case of `filter`: selecting only objects
+  251    // containing specific `key:value` pairs.
+  252    _.where = function(obj, attrs) {
+
+9 matches across 4 files
+
+
+Searching 1057 files for "select" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/assets/stylesheets/map.css.scss:
+   42  }
+   43
+   44: #type-selector {
+   45    color: #fff;
+   46    background-color: #4d90fe;
+   ..
+   48  }
+   49
+   50: #type-selector label {
+   51    font-family: Roboto;
+   52    font-size: 13px;
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/devise/registrations/new.html.erb:
+   20        <div class="form-group">
+   21          <%= f.label :role_type, "I am a..." %>
+   22:         <%= f.select :role_type, options_for_select(User.roles), { allow_blank: true }, class: "form-control" %>
+   23        </div>
+   24        <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/_form.html.erb:
+   25      <%= f.label :price %>
+   26      <%= f.number_field :price_cents, data: { role: 'money', a_sep: '.', a_dec: ',' }, :class => "form-control" %>
+   27:     <%= f.select :price_currency, options_for_select(Money::Currency), :class => "form-control" %>
+   28    </div>
+   29    <div class="form-group">
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/vendor/assets/javascripts/underscore.js:
+  180
+  181    // Return all the elements that pass a truth test.
+  182:   // Aliased as `select`.
+  183:   _.filter = _.select = function(obj, predicate, context) {
+  184      var results = [];
+  185      if (obj == null) return results;
+  ...
+  248    };
+  249
+  250:   // Convenience version of a common use case of `filter`: selecting only objects
+  251    // containing specific `key:value` pairs.
+  252    _.where = function(obj, attrs) {
+
+9 matches across 4 files
+
+
+Searching 1057 files for ":price" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/event.rb:
+    5    belongs_to :owner, polymorphic: true
+    6
+    7:   monetize :price_cents
+    8    before_save :set_price
+    9
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/_form.html.erb:
+   26
+   27    <div class="form-group">
+   28:     <%= f.label :price_cents, "Price" %>
+   29:     <%= f.number_field :price_cents, data: { role: 'money', a_sep: '.', a_dec: ',' }, :class => "form-control" %>
+   30    </div>
+   31
+   32    <div class="form-group">
+   33:     <%= f.label :price_currency, "Currency" %>
+   34:     <%= f.select :price_currency, options_for_select(Money::Currencies, "CAD"), {}, class: "form-control"  %>
+   35    </div>
+   36    <div class="form-group">
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.json.jbuilder:
+    1  json.array!(@events) do |event|
+    2:   json.extract! event, :id, :name, :description, :spots_available, :materials_needed, :price, :tax_rate
+    3    json.partial! 'addresses/address', address: event.address
+    4    json.extract! event, :created_at, :updated_at
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.json.jbuilder:
+    1: json.extract! @event, :id, :name, :description, :spots_available, :materials_needed, :price, :tax_rate
+    2  json.partial! 'addresses/address', address: @event.address
+    3  json.extract! @event, :created_at, :updated_at
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/db/migrate/20141225183900_create_events.rb:
+    8        t.text :materials_needed
+    9        t.references :address, index: true
+   10:       t.money :price
+   11        t.decimal :tax_rate, precision: 8, scale: 2
+   12        t.references :subject, index: true
+
+8 matches across 5 files
+
+
+Searching 1057 files for ".price" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/event.rb:
+   17    def set_price
+   18      money_currency = Money::Currency.find(price_currency)
+   19:     self.price_cents = self.price_cents * money_currency.subunit_to_unit
+   20    end
+   21  end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   31          <td><%= event.event_type %></td>
+   32          <td><%= event.materials_needed %></td>
+   33:         <td><%= event.price %></td>
+   34          <td><%= event.tax_rate %></td>
+   35          <td><%= link_to 'Show', [@owner, event] %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   23    <dd><%= @event.materials_needed %></dd>
+   24    <dt>Price:</dt>
+   25:   <dd><%= @event.price %></dd>
+   26    <dt>Tax rate:</dt>
+   27    <dd><%= @event.tax_rate %></dd>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+6 matches across 4 files
+
+
+Searching 1057 files for ".price" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/event.rb:
+   17    def set_price
+   18      money_currency = Money::Currency.find(price_currency)
+   19:     self.price_cents = self.price_cents * money_currency.subunit_to_unit
+   20    end
+   21  end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   31          <td><%= event.event_type %></td>
+   32          <td><%= event.materials_needed %></td>
+   33:         <td><%= humanized_money_with_symbol event.price %></td>
+   34          <td><%= event.tax_rate %></td>
+   35          <td><%= link_to 'Show', [@owner, event] %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   23    <dd><%= @event.materials_needed %></dd>
+   24    <dt>Price:</dt>
+   25:   <dd><%= @event.price %></dd>
+   26    <dt>Tax rate:</dt>
+   27    <dd><%= @event.tax_rate %></dd>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+6 matches across 4 files
+
+
+Searching 1057 files for ".price" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/models/event.rb:
+   17    def set_price
+   18      money_currency = Money::Currency.find(price_currency)
+   19:     self.price_cents = self.price_cents * money_currency.subunit_to_unit
+   20    end
+   21  end
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   31          <td><%= event.event_type %></td>
+   32          <td><%= event.materials_needed %></td>
+   33:         <td><%= humanized_money_with_symbol event.price %></td>
+   34          <td><%= event.tax_rate %></td>
+   35          <td><%= link_to 'Show', [@owner, event] %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   23    <dd><%= @event.materials_needed %></dd>
+   24    <dt>Price:</dt>
+   25:   <dd><%= humanized_money_with_symbol @event.price %></dd>
+   26    <dt>Tax rate:</dt>
+   27    <dd><%= @event.tax_rate %></dd>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+6 matches across 4 files
+
+
+Searching 1057 files for ".tax_rate" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   32          <td><%= event.materials_needed %></td>
+   33          <td><%= humanized_money_with_symbol event.price %></td>
+   34:         <td><%= event.tax_rate %></td>
+   35          <td><%= link_to 'Show', [@owner, event] %></td>
+   36          <td><%= link_to 'Edit', [:edit, @owner, event] %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   25    <dd><%= humanized_money_with_symbol @event.price %></dd>
+   26    <dt>Tax rate:</dt>
+   27:   <dd><%= number_to_percentage @event.tax_rate %></dd>
+   28
+   29    <%= render @event.address %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+4 matches across 3 files
+
+
+Searching 1057 files for ".tax_rate" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   32          <td><%= event.materials_needed %></td>
+   33          <td><%= humanized_money_with_symbol event.price %></td>
+   34:         <td><%= number_to_percentage event.tax_rate %></td>
+   35          <td><%= link_to 'Show', [@owner, event] %></td>
+   36          <td><%= link_to 'Edit', [:edit, @owner, event] %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   25    <dd><%= humanized_money_with_symbol @event.price %></dd>
+   26    <dt>Tax rate:</dt>
+   27:   <dd><%= number_to_percentage @event.tax_rate %></dd>
+   28
+   29    <%= render @event.address %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+4 matches across 3 files
+
+
+Searching 1057 files for ".tax_rate" (case sensitive)
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/index.html.erb:
+   32          <td><%= event.materials_needed %></td>
+   33          <td><%= humanized_money_with_symbol event.price %></td>
+   34:         <td><%= number_to_percent event.tax_rate %></td>
+   35          <td><%= link_to 'Show', [@owner, event] %></td>
+   36          <td><%= link_to 'Edit', [:edit, @owner, event] %></td>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/app/views/events/show.html.erb:
+   25    <dd><%= humanized_money_with_symbol @event.price %></dd>
+   26    <dt>Tax rate:</dt>
+   27:   <dd><%= number_to_percentage @event.tax_rate %></dd>
+   28
+   29    <%= render @event.address %>
+
+/Users/juliannadeau/Documents/Git-Repos/cfk_finder/test/controllers/events_controller_test.rb:
+   19    test "should create event" do
+   20      assert_difference('Event.count') do
+   21:       post :create, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   22      end
+   23
+   ..
+   36
+   37    test "should update event" do
+   38:     patch :update, id: @event, event: { address_id: @event.address_id, description: @event.description, materials_needed: @event.materials_needed, name: @event.name, price: @event.price, spots_available: @event.spots_available, tax_rate: @event.tax_rate, type: @event.event_type }
+   39      assert_redirected_to event_path(assigns(:event))
+   40    end
+
+4 matches across 3 files

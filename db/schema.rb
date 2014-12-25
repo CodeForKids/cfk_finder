@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124195851) do
+ActiveRecord::Schema.define(version: 20141225183900) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -43,6 +43,26 @@ ActiveRecord::Schema.define(version: 20141124195851) do
     t.datetime "updated_at"
   end
 
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "spots_available",                          default: 3
+    t.string   "event_type"
+    t.text     "materials_needed"
+    t.integer  "address_id"
+    t.integer  "price_cents",                              default: 0,     null: false
+    t.string   "price_currency",                           default: "CAD", null: false
+    t.decimal  "tax_rate",         precision: 8, scale: 2
+    t.integer  "subject_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["address_id"], name: "index_events_on_address_id", using: :btree
+  add_index "events", ["subject_id"], name: "index_events_on_subject_id", using: :btree
+
   create_table "kids", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -56,6 +76,13 @@ ActiveRecord::Schema.define(version: 20141124195851) do
   create_table "parents", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subjects", force: true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

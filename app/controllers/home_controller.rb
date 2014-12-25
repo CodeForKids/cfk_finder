@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     @current_location = current_user ? current_user.role.address : request.location
-    @addresses = Address.all.includes(:owner)
+    @events = Event.all.includes(:address)
     if @current_location
       modifier = @current_location.city.present? ? "to be #{@current_location.city}, please make sure this is correct." : "automatically, please make sure it is correct."
       flash[:notice] = "We detected your location #{modifier}"
@@ -14,15 +14,7 @@ class HomeController < ApplicationController
   end
 
   def json_markers
-    @addresses = Address.all.includes(:owner)
-    @hash = @addresses.collect do |address|
-      { latitude: address.latitude,
-        longitude: address.longitude,
-        title: address.owner.name + " (#{address.owner.class.name.humanize})",
-        content: address.full_street_address,
-        id: address.id }
-    end
-    render json: @hash
+    @events = Event.all
   end
 
   def authenticate
