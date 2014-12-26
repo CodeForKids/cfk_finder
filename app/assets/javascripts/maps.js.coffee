@@ -15,7 +15,7 @@ makeContentString = (contentString, url, marker) ->
   "<div id=\"content\">" +
   "<h1 id=\"firstHeading\" class=\"firstHeading\">#{marker.title}</h1>" +
   "<div id=\"bodyContent\">#{contentString}" +
-  "<a href=\"#{url}\" class=\"btn btn-primary\">Register Now</a>" +
+  "<p><a href=\"#{url}\" class=\"btn btn-primary\">Register Now</a></p>" +
   "</div></div>"
 
 createMarker = (myLatLng, title, url, contentString, id) ->
@@ -64,15 +64,10 @@ initialize = ->
     infoWindow = new google.maps.InfoWindow({})
     map = new google.maps.Map(document.getElementById("map"), mapOptions)
 
-
-
-    jQuery.getJSON("/json_markers.json", (json_markers) ->
-      jQuery.each json_markers, (->
-        myLatLng = new google.maps.LatLng(this["address"]["latitude"], this["address"]["longitude"])
-        bounds.extend(myLatLng)
-        createMarker(myLatLng, "#{this["name"]} (#{this["price"]})", this["url"], this["description"], this["id"])
-      )
-    )
+    $('.event-data').each ->
+      myLatLng = new google.maps.LatLng($(this).data('latitude'), $(this).data('longitude'))
+      bounds.extend(myLatLng)
+      createMarker(myLatLng, "#{$(this).data('name')} (#{$(this).data('price')})", $(this).data('url'), $(this).data('description'), $(this).data('id'))
 
     createSearchBox()
 

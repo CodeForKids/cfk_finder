@@ -1,14 +1,27 @@
 <div class="home-content">
   <div class="col-md-4 no-padding">
-    <div class="scrollview">
+    <div class="scrollview events">
       <% @events.each do |event| %>
         <div class="scrollview-item">
-          <p><%= event.name %> | <%= humanized_money_with_symbol event.price %></p>
-          <p>
-            <a href="#" onclick="centerOnMarker(<%= event.id %>);">
-              <%= event.address.full_street_address %>
-            </a>
-          </p>
+          <div class="event-data" data-latitude="<%= event.address.latitude %>"
+                                  data-longitude="<%= event.address.longitude %>"
+                                  data-name="<%= event.name %>"
+                                  data-price="<%= event.price %>"
+                                  data-url="<%= url_for([event.owner, event]) %>"
+                                  data-description="<%= event.description %>"
+                                  data-id="<%= event.id %>"
+                                  data-address="<%=event.address.full_street_address %>"></div>
+          <div class="col-md-7">
+            <p><%= event.name %> | <%= humanized_money_with_symbol event.price %></p>
+            <p>
+              <a href="#" onclick="centerOnMarker(<%= event.id %>);">
+                <%= event.address.full_street_address %>
+              </a>
+            </p>
+          </div>
+          <div class="col-md-5">
+            <%= link_to 'Register Now', [event.owner, event], class: "btn btn-default pull-right" %>
+          </div>
         </div>
       <% end %>
     </div>

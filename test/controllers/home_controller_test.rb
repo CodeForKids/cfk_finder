@@ -34,20 +34,6 @@ class HomeControllerTest < ActionController::TestCase
     assert_equal "We had an issue detecting your location, please find your location on the map.", flash[:error]
   end
 
-  test "should get json_markers" do
-    get :json_markers, format: :json
-    assert_response 200
-
-    markers = JSON.parse(response.body)
-    assert markers.count > 1, "Response did not have more than one marker"
-
-    marker = markers.first
-    assert_equal 123.0, marker["address"]["latitude"]
-    assert_equal 123.0, marker["address"]["longitude"]
-    assert_equal "My Event", marker["name"]
-    assert_equal "MyText", marker["description"]
-  end
-
   #################
   # Authenticate
   #################

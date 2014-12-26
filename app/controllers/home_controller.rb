@@ -13,10 +13,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def json_markers
-    @events = Event.all
-  end
-
   def authenticate
     email = request.headers["X-Entity-Email"].presence
     password = request.headers["X-Entity-Password"].presence
