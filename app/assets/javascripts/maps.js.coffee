@@ -13,11 +13,10 @@ root.centerOnMarker = (id) ->
 
 makeContentString = (contentString, url, marker) ->
   "<div id=\"content\">" +
-  "<a href=\"#{url}\">" +
   "<h1 id=\"firstHeading\" class=\"firstHeading\">#{marker.title}</h1>" +
-  "<div id=\"bodyContent\">#{contentString}</div>" +
-  "</a>" +
-  "</div>"
+  "<div id=\"bodyContent\">#{contentString}" +
+  "<a href=\"#{url}\" class=\"btn btn-primary\">Register Now</a>" +
+  "</div></div>"
 
 createMarker = (myLatLng, title, url, contentString, id) ->
   marker = new google.maps.Marker(
