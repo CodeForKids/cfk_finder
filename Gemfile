@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'dalli' # Memcache
 gem 'date_validator'
 gem 'devise'
 gem 'geocoder'
@@ -26,10 +27,6 @@ gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'devise-bootstrap-views'
-
-group :production do
-  gem 'dalli'
-end
 
 group :development, :test do
   gem 'ffaker', github: "emmanueloga/ffaker"
