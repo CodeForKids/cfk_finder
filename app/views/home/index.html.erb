@@ -30,8 +30,8 @@
   <div class="col-md-8 no-padding map-wrapper">
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"
-         data-latitude="<%= @current_location.try(:latitude) %>"
-         data-longitude="<%= @current_location.try(:longitude) %>"></div>
+         data-latitude="<%= @current_location.try(:latitude) || "45.4214" %>"
+         data-longitude="<%= @current_location.try(:longitude) || "75.6919" %>"></div>
     </div>
   </div>
 </div>
