@@ -55,15 +55,16 @@ def create_tutors()
 end
 
 def random_address(object)
-  address = @text.sample.split(", ")
-  object.create_address({
-    address1: address[0],
+  address_csv = @text.sample.split(", ")
+  address = object.build_address({
+    address1: address_csv[0],
     address2: "",
-    city: address[1],
-    postal_code: address[3].gsub("-"," "),
-    province: address[2],
+    city: address_csv[1],
+    postal_code: address_csv[3].gsub("-"," "),
+    province: address_csv[2],
     country: "Canada"
   })
+  address.save(validate: false)
 end
 
 def random_date(date1, date2)
