@@ -27,6 +27,10 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'devise-bootstrap-views'
 
+group :production do
+  gem 'dalli'
+end
+
 group :development, :test do
   gem 'ffaker', github: "emmanueloga/ffaker"
   gem 'pry'

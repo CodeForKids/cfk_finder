@@ -54,6 +54,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    dalli (2.7.2)
     date_validator (0.7.1)
       activemodel
     devise (3.2.4)
@@ -170,6 +171,7 @@ DEPENDENCIES
   bootswatch-rails
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
+  dalli
   date_validator
   devise
   devise-bootstrap-views
