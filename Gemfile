@@ -4,7 +4,8 @@ gem 'rails', '4.1.7'
 gem 'mysql2'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+
+# App Specific
 gem 'dalli' # Memcache
 gem 'date_validator'
 gem 'devise'
@@ -12,8 +13,8 @@ gem 'geocoder'
 
 #Money
 gem 'money-rails'
-gem "money"
-gem "google_currency"
+gem 'money'
+gem 'google_currency'
 
 #Assets
 gem 'sass-rails', '~> 4.0.3'
@@ -30,7 +31,7 @@ gem 'devise-bootstrap-views'
 
 group :development, :test do
   gem 'ffaker', github: "emmanueloga/ffaker"
-  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do
